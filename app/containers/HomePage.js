@@ -13,18 +13,20 @@ export default class HomePage extends Component<Props> {
     return (
       <Layout>
         <div
+          id="HomePage"
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            paddingBottom: "45px"
           }}
         >
           <div style={{ flex: 0.2, maxHeight: '150px', marginTop: '40px' }}>
             <WeeklyRemains />
           </div>
           <div style={{ flex: 0.8 }}>
-            <DayCard />
+            <DayCard editable={false}/>
           </div>
         </div>
       </Layout>

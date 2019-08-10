@@ -89,8 +89,15 @@ app.on('ready', async () => {
     }
   });
 
+  const resizeFunction = () => {
+    return mainWindow.webContents.send("Location");
+  }
+  
+  const resizeListener = mainWindow.addListener("resize", resizeFunction, false);
+
   mainWindow.on('closed', () => {
     mainWindow = null;
+    resizeListener.removeListener("resize", resizeFunction, false);
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
