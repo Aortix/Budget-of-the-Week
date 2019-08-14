@@ -2,9 +2,20 @@
     border: 1px solid black;
     min-width: 275px;
     max-width: 275px;
-    margin-top: 40px;
+    min-height: 400px;
+    max-height: 400px;
     padding: 15px;
     cursor: pointer;
+    
+    /* Makes text unhighlightable*/
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}
+
+.daysContainer {
+    margin: 40px;
 }
 
 .flexContainer {
