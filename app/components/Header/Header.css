@@ -14,6 +14,19 @@
     margin: 0 auto;
 }
 
+.budgetInput {
+    background-color: var(--headerColor);
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 19px;
+    max-width: 80px;
+}
+
+.budgetInput:focus {
+    outline-color: var(--mainTextColor);
+    outline-width: 3px;
+}
+
 .purchaseButton {
     min-height: 30px;
     margin-left: 40px;

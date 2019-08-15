@@ -4,6 +4,10 @@ export type counterStateType = {
   +counter: number
 };
 
+export type getBudgetType = {
+  +budget: number
+}
+
 export type Action = {
   +type: string
 };

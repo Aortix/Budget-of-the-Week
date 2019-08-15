@@ -16,6 +16,10 @@ export default class HomePage extends Component<Props> {
     this.homePageContainer = React.createRef();
   }
 
+  componentDidMount = () => {
+    
+  }
+
   render() {
     return (
       <Layout>

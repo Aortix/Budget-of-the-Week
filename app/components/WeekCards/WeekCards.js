@@ -30,7 +30,7 @@ export default class WeekCards extends Component {
                     this.setState({
                         scrolling: true
                     })
-                }, 100)
+                }, 150)
             }}
             onMouseUp={(event) => {
                 this.setState({
@@ -59,9 +59,9 @@ export default class WeekCards extends Component {
             {
                 daysOfTheWeek.map((day, index) => {
                     return (
-                        <React.Fragment>
+                        <React.Fragment key={index}>
                             <div style={{margin: "0px 12px"}} />
-                            <DayCard key={index} scrolling={this.state.scrolling} editable={this.props.editable} day={day}/>
+                            <DayCard scrolling={this.state.scrolling} editable={this.props.editable} day={day}/>
                             <div style={{margin: "0px 12px"}} />
                         </React.Fragment>
                     )
