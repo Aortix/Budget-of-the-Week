@@ -14,10 +14,6 @@ export class WeeklyRemains extends Component {
     }
   }
 
-  componentDidMount = () => {
-    console.log("Weekly remains");
-  }
-
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.budget !== this.props.budget) {
       this.setState({

@@ -1,0 +1,16 @@
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.fa-plus {
+    display: inline-block;
+}
+
+.fa-dollar-sign {
+    display: inline-block;
+}

@@ -45,23 +45,25 @@ export class Header extends Component{
 
   newPurchaseButtonClicked = () => {
     if (this.state.newPurchaseInterfaceVisible) {
-      this.setState({
-        newPurchaseInterfaceVisible: false
-      })
+        this.setState({
+          newPurchaseInterfaceVisible: false
+        })
+        
         let divs = Array.from(document.querySelectorAll("#HomePage :not(#AddPurchaseInterface)"));
         divs.forEach((elements) => {
           elements.style.setProperty("filter", "none");
         })
     } else {
-      this.setState({
-        newPurchaseInterfaceVisible: true
-      })
-      setTimeout(() => {
+        this.setState({
+          newPurchaseInterfaceVisible: true
+        })
+        
         let divs = Array.from(document.querySelectorAll("#HomePage :not(#AddPurchaseInterface)"));
+        setTimeout(() => {
         divs.forEach((elements) => {
           elements.style.setProperty("filter", "blur(1px)");
         })
-      }, 200)
+      }, 100)
     }
   }
 

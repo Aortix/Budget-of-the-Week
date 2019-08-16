@@ -23,21 +23,22 @@ export default class HomePage extends Component<Props> {
   render() {
     return (
       <Layout>
-        <WeeklyRemains />
-        <div
-          ref={this.homePageContainer}
-          id="HomePage"
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignContent: 'flex-start',
-            alignItems: 'center',
-            paddingBottom: "45px",
-            overflow: "auto"
-          }}
-        >
-          <div style={{ flex: 1, alignSelf: "flex-start", marginTop: "140px"}}>
-            <WeekCards homePageContainer={this.homePageContainer} editable={false}/>
+        <div id="HomePage">
+          <WeeklyRemains />
+          <div
+            ref={this.homePageContainer}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignContent: 'flex-start',
+              alignItems: 'center',
+              paddingBottom: "45px",
+              overflow: "auto"
+            }}
+          >
+            <div style={{ flex: 1, alignSelf: "flex-start", marginTop: "140px"}}>
+              <WeekCards homePageContainer={this.homePageContainer} editable={false}/>
+            </div>
           </div>
         </div>
       </Layout>
