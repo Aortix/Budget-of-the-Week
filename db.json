@@ -2,13 +2,158 @@
   "weeks": [
     {
       "id": 0,
-      "budget": 500,
+      "budget": 1000,
       "days": {
         "Monday": [
           {
             "id": 0,
             "itemName": "Grocery shopping",
             "price": 100
+          },
+          {
+            "id": "Toast2019-08-16T14:12:05-07:00",
+            "itemName": "Toast",
+            "price": 100
+          },
+          {
+            "id": "First Item2019-08-16T14:56:04-07:00",
+            "itemName": "First Item",
+            "price": 50
+          },
+          {
+            "id": "Second Item2019-08-16T14:56:04-07:00",
+            "itemName": "Second Item",
+            "price": 40
+          },
+          {
+            "id": "breakfast2019-08-16T14:57:15-07:00",
+            "itemName": "breakfast",
+            "price": 10
+          },
+          {
+            "id": "test12019-08-16T14:59:27-07:00",
+            "itemName": "test1",
+            "price": 10
+          },
+          {
+            "id": "test22019-08-16T14:59:34-07:00",
+            "itemName": "test2",
+            "price": 20
+          },
+          {
+            "id": "test32019-08-16T14:59:44-07:00",
+            "itemName": "test3",
+            "price": 20
+          },
+          {
+            "id": "totem2019-08-16T15:33:29-07:00",
+            "itemName": "totem",
+            "price": 10
+          },
+          {
+            "id": "Oil2019-08-16T18:29:33-07:00",
+            "itemName": "Oil",
+            "price": 10
+          },
+          {
+            "id": "Why2019-08-16T18:30:03-07:00",
+            "itemName": "Why",
+            "price": 100
+          },
+          {
+            "id": "Candy 2019-08-16T18:35:05-07:00",
+            "itemName": "Candy ",
+            "price": 50
+          },
+          {
+            "id": "Chocolate2019-08-16T18:35:40-07:00",
+            "itemName": "Chocolate",
+            "price": 50
+          },
+          {
+            "id": "Vanilla2019-08-16T18:36:45-07:00",
+            "itemName": "Vanilla",
+            "price": 10
+          },
+          {
+            "id": "Comon2019-08-16T18:39:21-07:00",
+            "itemName": "Comon",
+            "price": 100
+          },
+          {
+            "id": "LETS GO2019-08-16T18:40:37-07:00",
+            "itemName": "LETS GO",
+            "price": 40
+          },
+          {
+            "id": "ok2019-08-16T18:43:06-07:00",
+            "itemName": "ok",
+            "price": 1
+          },
+          {
+            "id": "bye2019-08-16T18:45:10-07:00",
+            "itemName": "bye",
+            "price": 12
+          },
+          {
+            "id": "resolving2019-08-16T18:49:33-07:00",
+            "itemName": "resolving",
+            "price": 10
+          },
+          {
+            "id": "test2019-08-16T18:50:18-07:00",
+            "itemName": "test",
+            "price": 123
+          },
+          {
+            "id": "async2019-08-16T18:59:03-07:00",
+            "itemName": "async",
+            "price": 5
+          },
+          {
+            "id": "fire2019-08-16T19:09:20-07:00",
+            "itemName": "fire",
+            "price": 100
+          },
+          {
+            "id": "chips2019-08-16T19:27:20-07:00",
+            "itemName": "chips",
+            "price": 7
+          },
+          {
+            "id": "soda2019-08-16T19:28:30-07:00",
+            "itemName": "soda",
+            "price": 4
+          },
+          {
+            "id": "final test2019-08-16T19:31:09-07:00",
+            "itemName": "final test",
+            "price": 12
+          },
+          {
+            "id": "Test Tube2019-08-16T19:33:52-07:00",
+            "itemName": "Test Tube",
+            "price": 10
+          },
+          {
+            "id": "strange2019-08-16T19:34:47-07:00",
+            "itemName": "strange",
+            "price": 10
+          },
+          {
+            "id": "Chipotle2019-08-16T19:37:34-07:00",
+            "itemName": "Chipotle",
+            "price": 8
+          },
+          {
+            "id": "Granola Bar2019-08-16T19:40:04-07:00",
+            "itemName": "Granola Bar",
+            "price": 1
+          },
+          {
+            "id": "bread2019-08-16T19:41:54-07:00",
+            "itemName": "bread",
+            "price": 4
           }
         ],
         "Tuesday": [

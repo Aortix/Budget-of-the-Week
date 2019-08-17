@@ -9,11 +9,11 @@ const initialState = {
 export const dayReducer = (state = initialState, action: Action) => {
     switch(action.type) {
         case GET_DAY:
-        return {
-            ...state,
-            dayPrices: action.payload
-        }
+            return {
+                ...state,
+                dayPrices: action.payload
+            }
         default: 
-        return state;
+            return state;
     }
 }

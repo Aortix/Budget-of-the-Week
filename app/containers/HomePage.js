@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import { connect } from "react-redux";
 import WeekCards from "./../components/WeekCards/WeekCards";
 import WeeklyRemains from '../components/WeeklyRemains/WeeklyRemains';
 import Layout from './Layout';
@@ -10,14 +11,9 @@ export default class HomePage extends Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {
-
     }
 
     this.homePageContainer = React.createRef();
-  }
-
-  componentDidMount = () => {
-    
   }
 
   render() {

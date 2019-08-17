@@ -4,11 +4,13 @@ import { connectRouter } from 'connected-react-router';
 
 import { budgetReducer } from "./budgetReducer";
 import { dayReducer } from "./dayReducer";
+import { purchasesReducer } from "./purchasesReducer";
 
 export default function createRootReducer(history: History) {
   return combineReducers({
     router: connectRouter(history),
     budgetReducer,
-    dayReducer
+    dayReducer,
+    purchasesReducer
   });
 }

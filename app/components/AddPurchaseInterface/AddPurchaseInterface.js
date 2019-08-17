@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
+import { connect } from "react-redux";
 
 import styles from "./AddPurchaseInterface.css";
+
+import { ADDING_PURCHASES_SWITCH } from '../../actions/types';
 
 import PurchaseRows from './../PurchaseRows/PurchaseRows';
 
@@ -8,8 +11,10 @@ class AddPurchaseInterface extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            numberOfRowsArrayToMap: []
+            numberOfRowsArrayToMap: [],
         }
+
+        this.addItemsButtonRef = React.createRef();
     }
 
     componentDidMount = () => {
@@ -52,7 +57,8 @@ class AddPurchaseInterface extends Component {
                             </React.Fragment>
                         )
                     })}
-                    <button className={styles.addRowButton} onClick={() => {
+                    <button className={styles.addRowButton} 
+                    onClick={() => {
                         if (document.getElementById("AddPurchaseInterface").offsetHeight < 
                         this.props.newPurchaseInterfaceLocation.height - 175) {
                             this.setState({
@@ -60,7 +66,16 @@ class AddPurchaseInterface extends Component {
                             })
                         }
                     }}>Additional Row</button>
-                    <button className={styles.addItemButton}>Add Items</button>
+                    <button ref="addItemsButtonRef"
+                        className={styles.addItemButton}
+                        onClick={() => {
+                            this.props.addingPurchasesSwitch();
+                            setTimeout(() => {
+                                this.setState({
+                                    numberOfRowsArrayToMap: [<PurchaseRows />]
+                                })
+                            }, 1000)
+                    }}>Add Items</button>
                 </div>
             )
             } else {
@@ -69,4 +84,10 @@ class AddPurchaseInterface extends Component {
     }
 }
 
-export default AddPurchaseInterface;
+const mapDispatchToProps = (dispatch) => ({
+    addingPurchasesSwitch: () => {
+        dispatch({type: ADDING_PURCHASES_SWITCH})
+    }
+})
+
+export default connect(null, mapDispatchToProps)(AddPurchaseInterface);

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import styles from './WeeklyRemains.css';
 
-import { getTotalPriceForTheWeek } from "./../../database/weekFunctions";
+import { getTotalPriceForTheWeek } from "./../../database/purchaseFunctions";
 import sumUpPurchases from "./../../utils/sumUpPurchases";
 
 export class WeeklyRemains extends Component {
@@ -20,6 +20,14 @@ export class WeeklyRemains extends Component {
         remainingBalance: this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))
       })
     }
+
+    if (prevProps.addedPurchase !== this.props.addedPurchase &&
+      this.props.addedPurchase === true) {
+        console.log("Weeklyremains added purchase call");
+        this.setState({
+          remainingBalance: this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))
+        })
+      }
   }
   
   render() {
@@ -33,11 +41,8 @@ export class WeeklyRemains extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  budget: state.budgetReducer.budget
+  budget: state.budgetReducer.budget,
+  addedPurchase: state.purchasesReducer.addedPurchase
 })
 
-const mapDispatchToProps = (dispatch) => ({
-
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(WeeklyRemains);
+export default connect(mapStateToProps, null)(WeeklyRemains);
