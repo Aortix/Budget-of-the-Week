@@ -9,6 +9,7 @@ import { Link, Redirect } from "react-router-dom";
 import { getPurchasesOfDay } from "./../../database/dayFunctions";
 import { updateDay } from "./../../database/purchaseFunctions";
 import sumUpPurchases from "./../../utils/sumUpPurchases";
+import { setCurrentDay } from "./../../actions/day";
 
 class DayCard extends Component {
   constructor(props) {
@@ -17,6 +18,9 @@ class DayCard extends Component {
       totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
       dayInformation: updateDay(this.props.day)
     }
+  }
+
+  componentDidMount = () => {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -32,7 +36,9 @@ class DayCard extends Component {
     if (this.props.editable === false && !this.props.scrolling) {
       return (
         <Link to={routes.DAYSCREEN}>
-          <div className={styles.mainContainer}>
+          <div className={styles.mainContainer} onClick={() => {
+            this.props.setCurrentDay(this.props.day)
+          }}>
                 <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
                 <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
                 {
@@ -67,7 +73,26 @@ class DayCard extends Component {
       )
     }
     else {
-      return null
+      return (
+        <div className={styles.mainFlexContainer}>
+          <div className={styles.subFlexContainer}>
+              <div className={styles.subFlexContainerTitle}>
+                <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
+                <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
+              </div>
+              {
+              this.state.dayInformation.map((items) => {
+                return (
+                  <div key={this.props.day + items.id} className={styles.subSubFlexContainer}>
+                        <span className={styles.productText}>{items.itemName}</span>
+                        <span className={styles.moneyText}>${items.price}</span>
+                  </div>
+                )  
+              })
+              }
+          </div>
+        </div>
+      )
     }
   }
 }
@@ -76,5 +101,11 @@ const mapStateToProps = (state) => ({
   addedPurchase: state.purchasesReducer.addedPurchase
 });
 
-export default connect(mapStateToProps, null)(DayCard);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentDay: (day) => {
+    dispatch(setCurrentDay(day))
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DayCard);
 

@@ -20,7 +20,9 @@ export default class HomePage extends Component<Props> {
     return (
       <Layout>
         <div id="HomePage">
-          <WeeklyRemains />
+          <div style={{marginTop: "40px"}}>
+            <WeeklyRemains />
+          </div>
           <div
             ref={this.homePageContainer}
             style={{
@@ -32,7 +34,7 @@ export default class HomePage extends Component<Props> {
               overflow: "auto"
             }}
           >
-            <div style={{ flex: 1, alignSelf: "flex-start", marginTop: "140px"}}>
+            <div style={{ flex: 1, alignSelf: "flex-start", marginTop: "120px"}}>
               <WeekCards homePageContainer={this.homePageContainer} editable={false}/>
             </div>
           </div>

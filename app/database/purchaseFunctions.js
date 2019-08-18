@@ -6,21 +6,7 @@ const db = low(adapter)
 
 import moment from 'moment'
 
-export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0) => {
-        try {
-            db.get(`weeks[${week}].days[${day}]`)
-                .push({
-                    id: itemInput + moment().format(),
-                    itemName: itemInput,
-                    price: Number(priceInput)
-                })
-                .write()
-        }
-        catch(error) {
-            return error.toString();
-        }
-}
-
+//GET ACTIONS
 export const updateDay = (day = "Monday") => {
     return db.get(`weeks[${db.get("weeks").value().length - 1}].days`)
         .value()[day]
@@ -52,4 +38,20 @@ export const getTotalPriceForTheWeek = (weekID = 0) => {
     catch(error) {
         return error.toString();
     }
+}
+
+//POST ACTIONS
+export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0) => {
+        try {
+            db.get(`weeks[${week}].days[${day}]`)
+                .push({
+                    id: itemInput + moment().format(),
+                    itemName: itemInput,
+                    price: Number(priceInput)
+                })
+                .write()
+        }
+        catch(error) {
+            return error.toString();
+        }
 }
