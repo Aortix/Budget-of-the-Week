@@ -9,13 +9,24 @@ import Layout from "./Layout";
 import DayCard from "./../components/DayCard/DayCard";
 import DayData from "./../components/DayData/DayData";
 import WeeklyRemains from "./../components/WeeklyRemains/WeeklyRemains";
-import { dispatch } from 'rxjs/internal/observable/range';
+import { setCurrentPage } from "./../actions/day";
 
 class DayPage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+
+        }
+    }
+
+    componentDidMount = () => {
+        this.props.setCurrentPage("DayPage");
+    }
+
     render() {
         return (
             <Layout>
-                <div style={{paddingBottom: "45px"}}>
+                <div id="DayPage" style={{paddingBottom: "45px"}}>
                     <Link to={routes.HOME}><i className="fas fa-arrow-left fa-2x" 
                     style={{margin: 12}}></i></Link>
                     <div style={{marginBottom: "120px"}}>
@@ -40,7 +51,9 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-
+    setCurrentPage: (page) => {
+        dispatch(setCurrentPage(page));
+      }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DayPage);

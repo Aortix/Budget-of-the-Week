@@ -63,7 +63,7 @@ class DayCard extends Component {
                   return (
                     <div key={this.props.day + items.id} className={styles.flexContainer}>
                         <span className={styles.productText}>{items.itemName}</span>
-                        <span className={styles.moneyText}>{items.price}</span>
+                        <span className={styles.moneyText}>${items.price}</span>
                     </div>
                   )  
                 })
@@ -81,7 +81,7 @@ class DayCard extends Component {
                 return (
                   <div key={this.props.day + items.id} className={styles.flexContainer}>
                       <span className={styles.productText}>{items.itemName}</span>
-                      <span className={styles.moneyText}>{items.price}</span>
+                      <span className={styles.moneyText}>${items.price}</span>
                   </div>
                 )  
               })

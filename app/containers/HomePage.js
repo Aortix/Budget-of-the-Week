@@ -3,17 +3,22 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import WeekCards from "./../components/WeekCards/WeekCards";
 import WeeklyRemains from '../components/WeeklyRemains/WeeklyRemains';
+import { setCurrentPage } from "./../actions/day";
 import Layout from './Layout';
 
 type Props = {};
 
-export default class HomePage extends Component<Props> {
+class HomePage extends Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {
     }
 
     this.homePageContainer = React.createRef();
+  }
+
+  componentDidMount = () => {
+    this.props.setCurrentPage("HomePage");
   }
 
   render() {
@@ -43,3 +48,15 @@ export default class HomePage extends Component<Props> {
     );
   }
 }
+
+const mapStateToProps = (state) => ({
+  currentPage: state.dayReducer.currentPage
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentPage: (page) => {
+    dispatch(setCurrentPage(page));
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

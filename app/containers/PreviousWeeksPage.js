@@ -8,7 +8,7 @@ export default class PreviousWeeksPage extends Component {
     render() {
         return (
             <Layout>
-                <div>
+                <div id="PreviousWeeksPage">
                     <Link to={routes.HOME}>Previous weeks page</Link>
                 </div>
             </Layout>

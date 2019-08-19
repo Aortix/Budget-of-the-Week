@@ -10,6 +10,7 @@ import styles from './Header.css';
 //Components
 import AddPurchaseInterface from "./../AddPurchaseInterface/AddPurchaseInterface";
 
+//Database functions
 import { getBudgetFunction } from "./../../database/budgetFunctions";
 
 //Action Types
@@ -49,7 +50,7 @@ export class Header extends Component{
           newPurchaseInterfaceVisible: false
         })
         
-        let divs = Array.from(document.querySelectorAll("#HomePage :not(#AddPurchaseInterface)"));
+        let divs = Array.from(document.querySelectorAll(`#${this.props.currentPage} :not(#AddPurchaseInterface)`));
         divs.forEach((elements) => {
           elements.style.setProperty("filter", "none");
         })
@@ -58,13 +59,24 @@ export class Header extends Component{
           newPurchaseInterfaceVisible: true
         })
         
-        let divs = Array.from(document.querySelectorAll("#HomePage :not(#AddPurchaseInterface)"));
+        let divs = Array.from(document.querySelectorAll(`#${this.props.currentPage} :not(#AddPurchaseInterface)`));
         setTimeout(() => {
         divs.forEach((elements) => {
           elements.style.setProperty("filter", "blur(1px)");
         })
       }, 100)
     }
+  }
+
+  toggleVisibility = () => {
+    this.setState({
+      newPurchaseInterfaceVisible: false
+    })
+    
+    let divs = Array.from(document.querySelectorAll(`#${this.props.currentPage} :not(#AddPurchaseInterface)`));
+    divs.forEach((elements) => {
+      elements.style.setProperty("filter", "none");
+    })
   }
 
   budgetFormOnSubmit = (budgetValue, weekID) => {
@@ -127,14 +139,16 @@ export class Header extends Component{
           </div>
         </div>
         <AddPurchaseInterface visible={this.state.newPurchaseInterfaceVisible}
-        newPurchaseInterfaceLocation={this.state.newPurchaseInterfaceLocation}/>
+        newPurchaseInterfaceLocation={this.state.newPurchaseInterfaceLocation}
+        toggleVisibility={this.toggleVisibility}/>
       </div>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
-  budget: state.budgetReducer.budget
+  budget: state.budgetReducer.budget,
+  currentPage: state.dayReducer.currentPage
 })
 
 const mapDispatchToProps = (dispatch) => ({

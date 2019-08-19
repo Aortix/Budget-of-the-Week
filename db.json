@@ -31,29 +31,9 @@
             "price": 4
           },
           {
-            "id": "final test2019-08-16T19:31:09-07:00",
-            "itemName": "final test",
-            "price": 12
-          },
-          {
-            "id": "Test Tube2019-08-16T19:33:52-07:00",
-            "itemName": "Test Tube",
-            "price": 10
-          },
-          {
-            "id": "strange2019-08-16T19:34:47-07:00",
-            "itemName": "strange",
-            "price": 10
-          },
-          {
             "id": "Chipotle2019-08-16T19:37:34-07:00",
             "itemName": "Chipotle",
             "price": 8
-          },
-          {
-            "id": "Granola Bar2019-08-16T19:40:04-07:00",
-            "itemName": "Granola Bar",
-            "price": 1
           },
           {
             "id": "taco2019-08-19T08:30:42-07:00",
@@ -66,9 +46,64 @@
             "price": 100
           },
           {
-            "id": "Hello world!2019-08-19T08:38:33-07:00",
-            "itemName": "Hello world!",
-            "price": 0
+            "id": "Hello world2019-08-19T09:53:48-07:00",
+            "itemName": "Hello world",
+            "price": 100
+          },
+          {
+            "id": "test12019-08-19T10:14:04-07:00",
+            "itemName": "test1",
+            "price": 10
+          },
+          {
+            "id": "test22019-08-19T10:14:04-07:00",
+            "itemName": "test2",
+            "price": 15
+          },
+          {
+            "id": "test32019-08-19T10:14:15-07:00",
+            "itemName": "test3",
+            "price": 10
+          },
+          {
+            "id": "test42019-08-19T10:14:15-07:00",
+            "itemName": "test4",
+            "price": 15
+          },
+          {
+            "id": "Decimal2019-08-19T11:12:11-07:00",
+            "itemName": "Decimal",
+            "price": 1.5
+          },
+          {
+            "id": "test12019-08-19T11:15:57-07:00",
+            "itemName": "test1",
+            "price": 12.6
+          },
+          {
+            "id": "Decimal2019-08-19T11:17:10-07:00",
+            "itemName": "Decimal",
+            "price": 123.56
+          },
+          {
+            "id": "Testing2019-08-19T11:17:10-07:00",
+            "itemName": "Testing",
+            "price": 12.98
+          },
+          {
+            "id": "intredasting2019-08-19T11:44:06-07:00",
+            "itemName": "intredasting",
+            "price": 20.5
+          },
+          {
+            "id": "not today2019-08-19T11:56:53-07:00",
+            "itemName": "not today",
+            "price": 10.2
+          },
+          {
+            "id": "testing2019-08-19T11:59:09-07:00",
+            "itemName": "testing",
+            "price": 23.57
           }
         ],
         "Tuesday": [

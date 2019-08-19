@@ -63,12 +63,14 @@ export const getTotalPriceForTheWeek = (weekID = 0) => {
 
 //POST ACTIONS
 export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0) => {
+        let convertedPrice = Number.parseFloat(priceInput).toFixed(2);
+
         try {
             db.get(`weeks[${week}].days[${day}]`)
                 .push({
                     id: itemInput + moment().format(),
                     itemName: itemInput,
-                    price: Number(priceInput)
+                    price: Number(convertedPrice)
                 })
                 .write()
         }
@@ -78,10 +80,15 @@ export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0
 }
 
 export const updatePurchaseToDay = (itemID, itemText, itemPrice, day, week) => {
+    let convertedPrice = Number.parseFloat(itemPrice).toFixed(2);
+
     try {
         db.get(`weeks[${week}].days[${day}]`)
             .find({ id: itemID})
-            .assign({itemName: itemText, price: Number(itemPrice)})
+            .assign({
+                itemName: itemText, 
+                price: Number(convertedPrice)
+            })
             .write()
     }
     catch(error) {

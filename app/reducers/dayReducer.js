@@ -1,10 +1,11 @@
 import type { Action } from './types';
 
-import { GET_DAY, SET_DAY } from "../actions/types";
+import { GET_DAY, SET_DAY, SET_PAGE } from "../actions/types";
 
 const initialState = {
     dayPrices: 0,
-    currentDay: "Monday"
+    currentDay: "Monday",
+    currentPage: "HomePage"
 }
 
 export const dayReducer = (state = initialState, action: Action) => {
@@ -18,6 +19,11 @@ export const dayReducer = (state = initialState, action: Action) => {
             return {
                 ...state,
                 currentDay: action.payload
+            }
+        case SET_PAGE: 
+            return {
+                ...state,
+                currentPage: action.payload
             }
         default: 
             return state;

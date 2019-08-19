@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import styles from "./PurchaseRows.css";
 
-import { ADDING_PURCHASES_SWITCH } from '../../actions/types';
+import { ADDING_PURCHASES_SWITCH, ADDING_PURCHASES_SWITCH_DISABLE } from '../../actions/types';
 
 import { addingPurchase } from "./../../actions/purchases";
 
@@ -20,7 +20,8 @@ class PurchaseRows extends Component {
         if (prevProps.addingPurchasesSwitch !== this.props.addingPurchasesSwitch
             && this.props.addingPurchasesSwitch === true) {
                 this.props.addedPurchase(this.state.itemInput, this.state.priceInput, "Monday", 0);
-                this.props.togglingPurchasesSwitch();
+                this.props.togglingPurchasesSwitchDisable();
+                this.props.toggleVisibility();
             }
     }
 
@@ -65,6 +66,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     togglingPurchasesSwitch: () => {
         dispatch({type: ADDING_PURCHASES_SWITCH})
+    },
+    togglingPurchasesSwitchDisable: () => {
+        dispatch({type: ADDING_PURCHASES_SWITCH_DISABLE})
     }
 })
 
