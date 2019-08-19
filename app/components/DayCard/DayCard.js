@@ -59,7 +59,7 @@ class DayCard extends Component {
                 <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
                 <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
                 {
-                this.state.dayInformation.map((items) => {
+                this.state.dayInformation.slice(0).reverse().map((items) => {
                   return (
                     <div key={this.props.day + items.id} className={styles.flexContainer}>
                         <span className={styles.productText}>{items.itemName}</span>
@@ -77,7 +77,7 @@ class DayCard extends Component {
               <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
               <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
               {
-              this.state.dayInformation.map((items) => {
+              this.state.dayInformation.slice(0).reverse().map((items) => {
                 return (
                   <div key={this.props.day + items.id} className={styles.flexContainer}>
                       <span className={styles.productText}>{items.itemName}</span>
@@ -98,7 +98,7 @@ class DayCard extends Component {
                 <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
               </div>
               {
-              this.state.dayInformation.map((items) => {
+              this.state.dayInformation.slice(0).reverse().map((items) => {
                 return (
                   <div key={this.props.day + items.id} className={styles.subSubFlexContainer}>
                     {this.state.selectedItem !== this.props.day + items.id + "product" ?
