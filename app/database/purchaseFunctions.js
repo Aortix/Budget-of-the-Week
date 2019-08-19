@@ -12,6 +12,27 @@ export const updateDay = (day = "Monday") => {
         .value()[day]
 }
 
+export const getPurchasesOfDay = (day = "Monday", weekID = 0) => {
+    let arrayOfPrices = [];
+
+    try {
+        db.get(`weeks[${weekID}].days[${day}]`)
+            .value()
+            .forEach((item) => {
+                if (!item.price) {
+                    arrayOfPrices.push(0);
+                } else {
+                    arrayOfPrices.push(item.price);
+                }
+            })
+
+        return arrayOfPrices;
+    }
+    catch(error) {
+        return error.toString();
+    }
+}
+
 export const getTotalPriceForTheWeek = (weekID = 0) => {
     let allPricesForTheWeek = [];
 
@@ -54,4 +75,27 @@ export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0
         catch(error) {
             return error.toString();
         }
+}
+
+export const updatePurchaseToDay = (itemID, itemText, itemPrice, day, week) => {
+    try {
+        db.get(`weeks[${week}].days[${day}]`)
+            .find({ id: itemID})
+            .assign({itemName: itemText, price: Number(itemPrice)})
+            .write()
+    }
+    catch(error) {
+        return error.toString();
+    }
+}
+
+export const deletePurchaseToDay = (itemID, day, week) => {
+    try {
+        db.get(`weeks[${week}].days[${day}]`)
+            .remove({ id: itemID})
+            .write()
+    }
+    catch(error) {
+        return error.toString();
+    }
 }

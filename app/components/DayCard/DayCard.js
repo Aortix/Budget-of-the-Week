@@ -6,30 +6,47 @@ import styles from './DayCard.css';
 import routes from "./../../constants/routes";
 import { Link, Redirect } from "react-router-dom";
 
-import { getPurchasesOfDay } from "./../../database/dayFunctions";
-import { updateDay } from "./../../database/purchaseFunctions";
+import { updateDay, getPurchasesOfDay } from "./../../database/purchaseFunctions";
 import sumUpPurchases from "./../../utils/sumUpPurchases";
 import { setCurrentDay } from "./../../actions/day";
+import { isTemplateExpression } from 'typescript';
+import { addingPurchase, updatingPurchase, deletingPurchase } from '../../actions/purchases';
 
 class DayCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
-      dayInformation: updateDay(this.props.day)
+      dayInformation: updateDay(this.props.day),
+      itemText: "",
+      selectedItem: null
     }
-  }
-
-  componentDidMount = () => {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.addedPurchase !== this.props.addedPurchase &&
       this.props.addedPurchase === true) {
         this.setState({
+          totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
           dayInformation: updateDay(this.props.day)
         })
       }
+  }
+
+  addingItem = (itemInput, priceInput, day, week) => {
+    this.props.addPurchaseToDay(itemInput, priceInput, day, week);
+  }
+
+  submittingUpdate = (itemID, itemText, itemPrice, day, week) => {
+    this.props.updatePurchaseToDay(itemID, itemText, itemPrice, day, week);
+    this.setState({
+      itemText: "",
+      selectedItem: null
+    })
+  }
+
+  deletingItem = (itemID, day, week) => {
+    this.props.deletePurchaseToDay(itemID, day, week);
   }
 
   render() {
@@ -84,8 +101,50 @@ class DayCard extends Component {
               this.state.dayInformation.map((items) => {
                 return (
                   <div key={this.props.day + items.id} className={styles.subSubFlexContainer}>
-                        <span className={styles.productText}>{items.itemName}</span>
-                        <span className={styles.moneyText}>${items.price}</span>
+                    {this.state.selectedItem !== this.props.day + items.id + "product" ?
+                        <span className={styles.productText} onClick={() => {
+                          this.setState({
+                            itemText: items.itemName,
+                            selectedItem: this.props.day + items.id + "product"
+                          })
+                        }}>{items.itemName}</span> : 
+                        <form onSubmit={(event) => {
+                          event.preventDefault();
+                          this.submittingUpdate(items.id, this.state.itemText, items.price, this.props.day, 0)
+                        }}>
+                          <input className={styles.textInput} 
+                          value={this.state.itemText}
+                          onChange={(event) => {
+                            this.setState({
+                              itemText: event.target.value
+                            })
+                          }}></input>
+                        </form>
+                    }
+                    {this.state.selectedItem !== this.props.day + items.id + "price" ?
+                        <span className={styles.moneyText} onClick={() => {
+                          this.setState({
+                            itemText: items.price,
+                            selectedItem: this.props.day + items.id + "price"
+                          })
+                        }}>${items.price}</span> :
+                        <form onSubmit={(event) => {
+                          event.preventDefault();
+                          this.submittingUpdate(items.id, items.itemName, this.state.itemText, this.props.day, 0)
+                        }}>
+                          <input className={styles.priceInput}
+                          value={this.state.itemText}
+                          onChange={(event) => {
+                            this.setState({
+                              itemText: event.target.value
+                            })
+                          }}></input>
+                        </form>
+                    }
+                    <i style={{cursor: "pointer", margin: "3px"}} className="fas fa-times-circle"
+                    onClick={() => {
+                      this.deletingItem(items.id, this.props.day, 0)
+                    }}></i>
                   </div>
                 )  
               })
@@ -104,6 +163,15 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   setCurrentDay: (day) => {
     dispatch(setCurrentDay(day))
+  },
+  addPurchaseToDay: (itemInput, priceInput, day, week) => {
+    dispatch(addingPurchase(itemInput, priceInput, day, week))
+  },
+  updatePurchaseToDay: (itemID, itemText, itemPrice, day, week) => {
+    dispatch(updatingPurchase(itemID, itemText, itemPrice, day, week))
+  },
+  deletePurchaseToDay: (itemID, day, week) => {
+    dispatch(deletingPurchase(itemID, day, week))
   }
 })
 

@@ -3,6 +3,7 @@
     min-width: 275px;
     max-width: 275px;
     min-height: 400px;
+    max-height: 2000px;
     padding: 15px;
     cursor: pointer;
     
@@ -15,42 +16,6 @@
 
 .daysContainer {
     margin: 40px;
-}
-
-.mainFlexContainer {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    padding: 15px;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.subFlexContainer {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-evenly;
-    border: 1px solid black;
-    padding: 20px;
-}
-
-.subFlexContainerTitle {
-    flex-basis: 100%;
-}
-
-.subSubFlexContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    padding: 12px;
-    margin: 15px;
-    border-top: 1px dotted black;
-    border-bottom: 1px dotted black;
-    min-width: 200px;
 }
 
 .flexContainer {
@@ -84,4 +49,65 @@
     text-align: center;
     margin-top: 15px;
     margin-bottom: 25px;
+}
+
+/* STYLES FOR THE "ELSE" PORTION*/
+.mainFlexContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 15px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.subFlexContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    padding: 20px
+}
+
+.subFlexContainerTitle {
+    flex-basis: 100%;
+}
+
+.subSubFlexContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 12px;
+    margin: 15px;
+    border-top: 1px dotted black;
+    border-bottom: 1px dotted black;
+    min-width: 200px;
+}
+
+.textInput {
+    background-color: inherit;
+    border: 1px solid black;
+    height: 35px;
+    margin: 10px;
+    padding: 5px;
+    width: 150px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.priceInput {
+    background-color: inherit;
+    border: 1px solid black;
+    height: 35px;
+    margin: 10px;
+    padding: 5px;
+    width: 60px;
+    font-size: 18px;
+    border-radius: 5px;
+    text-align: center;
 }
