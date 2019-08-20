@@ -3,7 +3,7 @@ import type { GetState, Dispatch } from '../reducers/types';
 
 import { GET_DAY, SET_DAY, SET_PAGE } from "./types";
 
-import { getPurchasesOfDay } from "./../database/dayFunctions";
+import { getPurchasesOfDay } from "./../database/purchaseFunctions";
 import sumUpPurchases from "./../utils/sumUpPurchases";
 
 export const getDayPurchases = (day = "Monday", weekID = 0) => {

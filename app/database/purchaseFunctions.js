@@ -6,10 +6,71 @@ const db = low(adapter)
 
 import moment from 'moment'
 
+// Set some defaults (required if your JSON file is empty)
+export const initializeDB = () => {
+    return new Promise((resolve, reject) => {
+        if (db.get("weeks[0]").value() !== undefined) {
+            resolve(null);
+        } else {
+            resolve(db.defaults({weeks: [{
+                id: 0,
+                budget: 0,
+                dateCreated: moment().format("YYYY-MM-DD"),
+                days: { 
+                Monday: [{
+                    id: 0,
+                    itemName: "Grocery shopping",
+                    price: 100
+                }],
+                Tuesday: [{
+                    id: 0,
+                    itemName: "Gasoline",
+                    price: 20
+                  },
+                  {
+                      id: 1,
+                      itemName: "Lunch",
+                      price: 20
+                  }
+                ],
+                Wednesday: [{
+                    id: 0,
+                    itemName: "Textbooks",
+                    price: 200
+                }],
+                Thursday: [{
+                    id: 0,
+                    itemName: "Gift",
+                    price: 40
+                }],
+                Friday: [{
+                }],
+                Saturday: [{
+                    id: 0,
+                    itemName: "Bar",
+                    price: 100
+                }],
+                Sunday: [{
+                    id: 0,
+                    itemName: "Snack",
+                    price: 5
+                }]
+            }}]})
+              .write())
+        }
+    })
+}
+
 //GET ACTIONS
 export const updateDay = (day = "Monday") => {
-    return db.get(`weeks[${db.get("weeks").value().length - 1}].days`)
-        .value()[day]
+    if (db.get("weeks").value() === undefined) {
+        return 0;
+    } else {
+        return (
+            db.get(`weeks[${db.get("weeks").value().length - 1}].days`)
+                .value()[day]
+        )
+    }
 }
 
 export const getPurchasesOfDay = (day = "Monday", weekID = 0) => {
@@ -61,6 +122,22 @@ export const getTotalPriceForTheWeek = (weekID = 0) => {
     }
 }
 
+export const getBudgetFunction = (weekID = 0) => {
+    if (db.get(`weeks[${weekID}].budget`).value() === undefined) {
+        return 0;
+    } else {
+        try {
+            return (
+                db.get(`weeks[${weekID}].budget`)
+                    .value()
+            )
+        }
+        catch(error) {
+            return error.toString();
+        }
+    }
+}
+
 //POST ACTIONS
 export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0) => {
         let convertedPrice = Number.parseFloat(priceInput).toFixed(2);
@@ -101,6 +178,18 @@ export const deletePurchaseToDay = (itemID, day, week) => {
         db.get(`weeks[${week}].days[${day}]`)
             .remove({ id: itemID})
             .write()
+    }
+    catch(error) {
+        return error.toString();
+    }
+}
+
+export const setBudgetFunction = (budgetValue = 0, weekID) => {
+    try {
+        let test = db.set(`weeks[${weekID}].budget`, budgetValue)
+            .write()
+
+        return Number(budgetValue);
     }
     catch(error) {
         return error.toString();

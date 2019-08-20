@@ -11,7 +11,7 @@ import styles from './Header.css';
 import AddPurchaseInterface from "./../AddPurchaseInterface/AddPurchaseInterface";
 
 //Database functions
-import { getBudgetFunction } from "./../../database/budgetFunctions";
+import { getBudgetFunction } from "./../../database/purchaseFunctions";
 
 //Action Types
 import { GET_BUDGET } from '../../actions/types';
@@ -29,11 +29,15 @@ export class Header extends Component{
         width: remote.getCurrentWindow().getBounds().width
       },
       editingBudget: false,
-      budgetValue: getBudgetFunction(0).toString()
+      budgetValue: ""
     }
   }
 
   componentDidMount = () => {
+    this.setState({
+      budgetValue: getBudgetFunction(0).toString()
+    })
+    
     ipcRenderer.on('Location', (event, arg) => {
       this.setState({
         newPurchaseInterfaceLocation: {

@@ -10,8 +10,14 @@ export class WeeklyRemains extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))).toFixed(2)
+      remainingBalance: 0
     }
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))).toFixed(2)
+    })
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -23,7 +29,6 @@ export class WeeklyRemains extends Component {
 
     if (prevProps.addedPurchase !== this.props.addedPurchase &&
       this.props.addedPurchase === true) {
-        console.log("Weeklyremains added purchase call");
         this.setState({
           remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))).toFixed(2)
         })

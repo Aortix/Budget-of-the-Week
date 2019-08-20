@@ -16,14 +16,30 @@ class DayCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
-      dayInformation: updateDay(this.props.day),
+      totalOfAllProducts: 0,
+      dayInformation: [],
       itemText: "",
       selectedItem: null
     }
   }
 
+  componentDidMount = () => {
+    this.setState({
+      totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
+      dayInformation: updateDay(this.props.day),
+    })
+  }
+
   componentDidUpdate = (prevProps, prevState) => {
+    //When application is started for the first time, this needs to run to update the data after
+    // the lowdb json object is created
+    if (this.state.dayInformation === 0) {
+      this.setState({
+        totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
+        dayInformation: updateDay(this.props.day),
+      })
+    }
+
     if (prevProps.addedPurchase !== this.props.addedPurchase &&
       this.props.addedPurchase === true) {
         this.setState({
@@ -59,7 +75,7 @@ class DayCard extends Component {
                 <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
                 <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
                 {
-                this.state.dayInformation.slice(0).reverse().map((items) => {
+                this.state.dayInformation && this.state.dayInformation.slice(0).reverse().map((items) => {
                   return (
                     <div key={this.props.day + items.id} className={styles.flexContainer}>
                         <span className={styles.productText}>{items.itemName}</span>
@@ -77,7 +93,7 @@ class DayCard extends Component {
               <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
               <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
               {
-              this.state.dayInformation.slice(0).reverse().map((items) => {
+              this.state.dayInformation && this.state.dayInformation.slice(0).reverse().map((items) => {
                 return (
                   <div key={this.props.day + items.id} className={styles.flexContainer}>
                       <span className={styles.productText}>{items.itemName}</span>
@@ -98,7 +114,7 @@ class DayCard extends Component {
                 <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
               </div>
               {
-              this.state.dayInformation.slice(0).reverse().map((items) => {
+              this.state.dayInformation && this.state.dayInformation.slice(0).reverse().map((items) => {
                 return (
                   <div key={this.props.day + items.id} className={styles.subSubFlexContainer}>
                     {this.state.selectedItem !== this.props.day + items.id + "product" ?

@@ -2,134 +2,24 @@
   "weeks": [
     {
       "id": 0,
-      "budget": 600,
+      "budget": 400,
+      "dateCreated": "2019-08-20",
       "days": {
         "Monday": [
           {
-            "id": "test2019-08-16T18:50:18-07:00",
-            "itemName": "test",
-            "price": 200
-          },
-          {
-            "id": "async2019-08-16T18:59:03-07:00",
-            "itemName": "async",
-            "price": 5
-          },
-          {
-            "id": "fire2019-08-16T19:09:20-07:00",
-            "itemName": "fire",
+            "id": "Grocery Shopping2019-08-20T11:12:55-07:00",
+            "itemName": "Grocery Shopping",
             "price": 100
-          },
-          {
-            "id": "chips2019-08-16T19:27:20-07:00",
-            "itemName": "chips",
-            "price": 7
-          },
-          {
-            "id": "soda2019-08-16T19:28:30-07:00",
-            "itemName": "soda",
-            "price": 4
-          },
-          {
-            "id": "Chipotle2019-08-16T19:37:34-07:00",
-            "itemName": "Chipotle",
-            "price": 8
-          },
-          {
-            "id": "taco2019-08-19T08:30:42-07:00",
-            "itemName": "taco",
-            "price": 10
-          },
-          {
-            "id": "chair2019-08-19T08:30:56-07:00",
-            "itemName": "chair",
-            "price": 100
-          },
-          {
-            "id": "Hello world2019-08-19T09:53:48-07:00",
-            "itemName": "Hello world",
-            "price": 100
-          },
-          {
-            "id": "test12019-08-19T10:14:04-07:00",
-            "itemName": "test1",
-            "price": 10
-          },
-          {
-            "id": "test22019-08-19T10:14:04-07:00",
-            "itemName": "test2",
-            "price": 15
-          },
-          {
-            "id": "test32019-08-19T10:14:15-07:00",
-            "itemName": "test3",
-            "price": 10
-          },
-          {
-            "id": "test42019-08-19T10:14:15-07:00",
-            "itemName": "test4",
-            "price": 15
-          },
-          {
-            "id": "Decimal2019-08-19T11:12:11-07:00",
-            "itemName": "Decimal",
-            "price": 1.5
-          },
-          {
-            "id": "test12019-08-19T11:15:57-07:00",
-            "itemName": "test1",
-            "price": 12.6
-          },
-          {
-            "id": "Decimal2019-08-19T11:17:10-07:00",
-            "itemName": "Decimal",
-            "price": 123.56
-          },
-          {
-            "id": "Testing2019-08-19T11:17:10-07:00",
-            "itemName": "Testing",
-            "price": 12.98
-          },
-          {
-            "id": "intredasting2019-08-19T11:44:06-07:00",
-            "itemName": "intredasting",
-            "price": 20.5
-          },
-          {
-            "id": "not today2019-08-19T11:56:53-07:00",
-            "itemName": "not today",
-            "price": 10.2
-          },
-          {
-            "id": "testing2019-08-19T11:59:09-07:00",
-            "itemName": "testing",
-            "price": 23.57
           }
         ],
         "Tuesday": [
           {
-            "id": 0,
-            "itemName": "Gasoline",
-            "price": 20
-          },
-          {
-            "id": 1,
-            "itemName": "Lunch",
-            "price": 20
-          },
-          {
-            "id": "Chocolate2019-08-19T08:39:41-07:00",
-            "itemName": "Chocolate",
-            "price": 15
+            "id": "Gas2019-08-20T11:13:01-07:00",
+            "itemName": "Gas",
+            "price": 30
           }
         ],
-        "Wednesday": [
-          {
-            "id": 0,
-            "itemName": "Textbooks",
-            "price": 200
-          }
-        ],
+        "Wednesday": [],
         "Thursday": [
           {
             "id": 0,
@@ -138,7 +28,12 @@
           }
         ],
         "Friday": [
-          {}
+          {},
+          {
+            "id": "Gas2019-08-20T11:13:14-07:00",
+            "itemName": "Gasoline",
+            "price": 30
+          }
         ],
         "Saturday": [
           {
@@ -156,8 +51,5 @@
         ]
       }
     }
-  ],
-  "weeks0": {
-    "budget": 100
-  }
+  ]
 }

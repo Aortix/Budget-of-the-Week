@@ -12,12 +12,12 @@ export const budgetReducer = (state = initialState, action: Action) => {
     case GET_BUDGET:
       return {
           ...state,
-          budget: action.payload
+          budget: action.payload === 0 ? 1 : action.payload
       };
     case SET_BUDGET: 
       return {
           ...state,
-          budget: action.payload
+          budget: action.payload === 0 ? 1 : action.payload
       }
     default:
       return state;

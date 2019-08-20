@@ -12,11 +12,17 @@ class DayData extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, 0)) / 
-            this.props.budget) * 100),
+            percentage: 0,
             newItemInput: "",
             newPriceInput: ""
         }
+    }
+
+    componentDidMount = () => {
+        this.setState({
+            percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, 0)) / 
+            this.props.budget) * 100)
+        })
     }
 
     componentDidUpdate = (prevProps, prevState) => {

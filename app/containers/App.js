@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { connect } from "react-redux";
 
-import { initializeDB } from "./../database/initializeDB";
+import { initializeDB } from "./../database/purchaseFunctions";
 
 import { getBudget } from "./../actions/budget";
 

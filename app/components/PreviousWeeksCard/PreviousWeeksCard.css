@@ -1,0 +1,31 @@
+.mainContainer {
+    width: 80%;
+    margin: 0 auto;
+    max-width: 850px;
+}
+
+.cardContainer {
+    border: 1px solid black;
+    padding: 7px;
+    vertical-align: middle;
+}
+
+.cardTitle {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+.cardSubTitle {
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: 1px solid black;
+    padding: 16px;
+}
+
+.arrowDown {
+}

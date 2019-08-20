@@ -1,5 +1,6 @@
-const sumUpPurchases = (purchaseArray) => {
-    if (purchaseArray.length === 0 || purchaseArray == undefined || purchaseArray == null) {
+const sumUpPurchases = (purchaseArray = [0]) => {
+    if (purchaseArray.length === 0 || purchaseArray == undefined || purchaseArray == null ||
+        typeof purchaseArray === "string") {
         return 0;
     } else {
         let returnNumber = purchaseArray.reduce((accu, currValue) => {

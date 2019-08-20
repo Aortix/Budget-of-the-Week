@@ -6,7 +6,6 @@ import { addPurchaseToDay, updatePurchaseToDay, deletePurchaseToDay } from "./..
 
 export const addingPurchase = (itemInput, priceInput, day = "Monday", week = 0) =>
     dispatch => {
-        console.log("Purchase should have been added");
         addPurchaseToDay(itemInput, priceInput, day, week);
         //Set to true
         dispatch({ type: ADDED_PURCHASE })
@@ -18,7 +17,6 @@ export const addingPurchase = (itemInput, priceInput, day = "Monday", week = 0) 
 
 export const updatingPurchase = (itemID, itemInput, priceInput, day = "Monday", week = 0) =>
     dispatch => {
-        console.log("Purchase should have been updated");
         updatePurchaseToDay(itemID, itemInput, priceInput, day, week);
         //Set to true
         dispatch({ type: ADDED_PURCHASE })
@@ -30,7 +28,6 @@ export const updatingPurchase = (itemID, itemInput, priceInput, day = "Monday", 
 
 export const deletingPurchase = (itemID, day = "Monday", week = 0) =>
     dispatch => {
-        console.log("Purchase should have been added");
         deletePurchaseToDay(itemID, day, week);
         //Set to true
         dispatch({ type: ADDED_PURCHASE })
