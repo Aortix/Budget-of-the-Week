@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { initializeDB } from "./../database/purchaseFunctions";
 
 import { getBudget } from "./../actions/budget";
+import { setWeek } from "./../actions/week";
 
 type Props = {
   children: React.Node
@@ -19,7 +20,10 @@ class App extends React.Component<Props> {
         if (value === null) {
           console.log("DB already made");
         }
-        this.props.getBudget(0);
+        this.props.setCurrentWeek();
+      })
+      .then(() => {
+        this.props.getBudget(this.props.currentWeek);
       })
   }
   render() {
@@ -29,11 +33,15 @@ class App extends React.Component<Props> {
 }
 
 const mapStateToProps = (state) => ({
+  currentWeek: state.weekReducer.currentWeek
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getBudget: (weekID) => {
     dispatch(getBudget(weekID))
+  },
+  setCurrentWeek: () => {
+    dispatch(setWeek())
   }
 })
 

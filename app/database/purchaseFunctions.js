@@ -138,6 +138,12 @@ export const getBudgetFunction = (weekID = 0) => {
     }
 }
 
+export const getCurrentWeekID = () => {
+    return (
+        db.get("weeks").value().length - 1
+    )
+}
+
 //POST ACTIONS
 export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0) => {
         let convertedPrice = Number.parseFloat(priceInput).toFixed(2);
@@ -156,6 +162,7 @@ export const addPurchaseToDay = (itemInput, priceInput, day = "Monday", week = 0
         }
 }
 
+//PUT REQUESTS
 export const updatePurchaseToDay = (itemID, itemText, itemPrice, day, week) => {
     let convertedPrice = Number.parseFloat(itemPrice).toFixed(2);
 
@@ -173,23 +180,24 @@ export const updatePurchaseToDay = (itemID, itemText, itemPrice, day, week) => {
     }
 }
 
-export const deletePurchaseToDay = (itemID, day, week) => {
-    try {
-        db.get(`weeks[${week}].days[${day}]`)
-            .remove({ id: itemID})
-            .write()
-    }
-    catch(error) {
-        return error.toString();
-    }
-}
-
 export const setBudgetFunction = (budgetValue = 0, weekID) => {
     try {
         let test = db.set(`weeks[${weekID}].budget`, budgetValue)
             .write()
 
         return Number(budgetValue);
+    }
+    catch(error) {
+        return error.toString();
+    }
+}
+
+//DELETE REQUESTS
+export const deletePurchaseToDay = (itemID, day, week) => {
+    try {
+        db.get(`weeks[${week}].days[${day}]`)
+            .remove({ id: itemID})
+            .write()
     }
     catch(error) {
         return error.toString();

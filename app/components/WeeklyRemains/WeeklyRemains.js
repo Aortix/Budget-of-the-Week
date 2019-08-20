@@ -16,21 +16,21 @@ export class WeeklyRemains extends Component {
 
   componentDidMount = () => {
     this.setState({
-      remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))).toFixed(2)
+      remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(this.props.currentWeek))).toFixed(2)
     })
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     if (prevProps.budget !== this.props.budget) {
       this.setState({
-        remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))).toFixed(2)
+        remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(this.props.currentWeek))).toFixed(2)
       })
     }
 
     if (prevProps.addedPurchase !== this.props.addedPurchase &&
       this.props.addedPurchase === true) {
         this.setState({
-          remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(0))).toFixed(2)
+          remainingBalance: (this.props.budget - sumUpPurchases(getTotalPriceForTheWeek(this.props.currentWeek))).toFixed(2)
         })
       }
   }
@@ -47,7 +47,8 @@ export class WeeklyRemains extends Component {
 
 const mapStateToProps = (state) => ({
   budget: state.budgetReducer.budget,
-  addedPurchase: state.purchasesReducer.addedPurchase
+  addedPurchase: state.purchasesReducer.addedPurchase,
+  currentWeek: state.weekReducer.currentWeek
 })
 
 export default connect(mapStateToProps, null)(WeeklyRemains);

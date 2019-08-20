@@ -19,7 +19,8 @@ class PurchaseRows extends Component {
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.addingPurchasesSwitch !== this.props.addingPurchasesSwitch
             && this.props.addingPurchasesSwitch === true) {
-                this.props.addedPurchase(this.state.itemInput, this.state.priceInput, "Monday", 0);
+                this.props.addedPurchase(this.state.itemInput, this.state.priceInput, 
+                    this.props.currentDayForPurchases, this.props.currentWeek);
                 this.props.togglingPurchasesSwitchDisable();
                 this.props.toggleVisibility();
             }
@@ -57,7 +58,9 @@ class PurchaseRows extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    addingPurchasesSwitch: state.purchasesReducer.addingPurchasesSwitch
+    addingPurchasesSwitch: state.purchasesReducer.addingPurchasesSwitch,
+    currentWeek: state.weekReducer.currentWeek,
+    currentDayForPurchases: state.dayReducer.currentDayForPurchases
 })
 
 const mapDispatchToProps = (dispatch) => ({

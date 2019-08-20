@@ -35,7 +35,7 @@ export class Header extends Component{
 
   componentDidMount = () => {
     this.setState({
-      budgetValue: getBudgetFunction(0).toString()
+      budgetValue: getBudgetFunction(this.props.currentWeek).toString()
     })
     
     ipcRenderer.on('Location', (event, arg) => {
@@ -129,7 +129,7 @@ export class Header extends Component{
                 }}
                 onKeyPress={(event) => {
                   if (event.key === "Enter") {
-                    this.budgetFormOnSubmit(this.state.budgetValue, 0);
+                    this.budgetFormOnSubmit(this.state.budgetValue, this.props.currentWeek);
                   }
                 }} />
               </label>
@@ -152,7 +152,8 @@ export class Header extends Component{
 
 const mapStateToProps = (state) => ({
   budget: state.budgetReducer.budget,
-  currentPage: state.dayReducer.currentPage
+  currentPage: state.dayReducer.currentPage,
+  currentWeek: state.weekReducer.currentWeek
 })
 
 const mapDispatchToProps = (dispatch) => ({

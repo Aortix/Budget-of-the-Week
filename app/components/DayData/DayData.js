@@ -20,7 +20,7 @@ class DayData extends Component {
 
     componentDidMount = () => {
         this.setState({
-            percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, 0)) / 
+            percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, this.props.currentWeek)) / 
             this.props.budget) * 100)
         })
     }
@@ -28,7 +28,7 @@ class DayData extends Component {
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.budget !== this.props.budget) {
             this.setState({
-                percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, 0)) / 
+                percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, this.props.currentWeek)) / 
                 this.props.budget) * 100),
                 newItemInput: "",
                 newPriceInput: ""
@@ -38,14 +38,14 @@ class DayData extends Component {
         if (prevProps.addedPurchase !== this.props.addedPurchase &&
           this.props.addedPurchase === true) {
             this.setState({
-              percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, 0)) / 
+              percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, this.props.currentWeek)) / 
               this.props.budget) * 100)
             })
           }
       }
 
     determineColor = () => {
-        let percentage = Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, 0))))
+        let percentage = Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, this.props.currentWeek))))
 
         if (percentage < Math.round(this.props.budget / 7)) {
             return "green"
@@ -59,7 +59,7 @@ class DayData extends Component {
     handleFormSubmit = (event) => {
         event.preventDefault();
         this.props.addingPurchase(this.state.newItemInput, this.state.newPriceInput, 
-            this.props.currentDay, 0);
+            this.props.currentDay, this.props.currentWeek);
         this.setState({
             newItemInput: "",
             newPriceInput: ""
@@ -97,7 +97,8 @@ class DayData extends Component {
 const mapStateToProps = (state) => ({
     budget: state.budgetReducer.budget,
     currentDay: state.dayReducer.currentDay,
-    addedPurchase: state.purchasesReducer.addedPurchase
+    addedPurchase: state.purchasesReducer.addedPurchase,
+    currentWeek: state.weekReducer.currentWeek
 })
 
 const mapDispatchToProps = (dispatch) => ({

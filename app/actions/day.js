@@ -1,7 +1,7 @@
 // @flow
 import type { GetState, Dispatch } from '../reducers/types';
 
-import { GET_DAY, SET_DAY, SET_PAGE } from "./types";
+import { GET_DAY, SET_DAY, SET_PAGE, SET_DAY_FOR_PURCHASES } from "./types";
 
 import { getPurchasesOfDay } from "./../database/purchaseFunctions";
 import sumUpPurchases from "./../utils/sumUpPurchases";
@@ -24,5 +24,12 @@ export const setCurrentPage = (page = "HomePage") => {
   return {
     type: SET_PAGE,
     payload: page
+  }
+}
+
+export const setCurrentDayForPurchases = (day = "Monday") => {
+  return {
+    type: SET_DAY_FOR_PURCHASES,
+    payload: day
   }
 }

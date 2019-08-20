@@ -25,7 +25,7 @@ class DayCard extends Component {
 
   componentDidMount = () => {
     this.setState({
-      totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
+      totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, this.props.currentWeek)),
       dayInformation: updateDay(this.props.day),
     })
   }
@@ -35,7 +35,7 @@ class DayCard extends Component {
     // the lowdb json object is created
     if (this.state.dayInformation === 0) {
       this.setState({
-        totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
+        totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, this.props.currentWeek)),
         dayInformation: updateDay(this.props.day),
       })
     }
@@ -43,7 +43,7 @@ class DayCard extends Component {
     if (prevProps.addedPurchase !== this.props.addedPurchase &&
       this.props.addedPurchase === true) {
         this.setState({
-          totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, 0)),
+          totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, this.props.currentWeek)),
           dayInformation: updateDay(this.props.day)
         })
       }
@@ -126,7 +126,8 @@ class DayCard extends Component {
                         }}>{items.itemName}</span> : 
                         <form onSubmit={(event) => {
                           event.preventDefault();
-                          this.submittingUpdate(items.id, this.state.itemText, items.price, this.props.day, 0)
+                          this.submittingUpdate(items.id, this.state.itemText, items.price, 
+                            this.props.day, this.props.currentWeek)
                         }}>
                           <input className={styles.textInput} 
                           value={this.state.itemText}
@@ -146,7 +147,8 @@ class DayCard extends Component {
                         }}>${items.price}</span> :
                         <form onSubmit={(event) => {
                           event.preventDefault();
-                          this.submittingUpdate(items.id, items.itemName, this.state.itemText, this.props.day, 0)
+                          this.submittingUpdate(items.id, items.itemName, this.state.itemText, 
+                            this.props.day, this.props.currentWeek)
                         }}>
                           <input className={styles.priceInput}
                           value={this.state.itemText}
@@ -159,7 +161,7 @@ class DayCard extends Component {
                     }
                     <i style={{cursor: "pointer", margin: "3px"}} className="fas fa-times-circle"
                     onClick={() => {
-                      this.deletingItem(items.id, this.props.day, 0)
+                      this.deletingItem(items.id, this.props.day, this.props.currentWeek)
                     }}></i>
                   </div>
                 )  
@@ -173,7 +175,8 @@ class DayCard extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  addedPurchase: state.purchasesReducer.addedPurchase
+  addedPurchase: state.purchasesReducer.addedPurchase,
+  currentWeek: state.weekReducer.currentWeek
 });
 
 const mapDispatchToProps = (dispatch) => ({
