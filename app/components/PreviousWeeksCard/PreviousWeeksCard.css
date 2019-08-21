@@ -27,3 +27,13 @@
     border: 1px solid black;
     padding: 16px;
 }
+
+.weekContainer {
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 8px;
+    margin-left: 12px;
+    margin-right: 12px;
+    padding: 5px;
+}

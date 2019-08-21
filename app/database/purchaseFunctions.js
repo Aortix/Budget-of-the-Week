@@ -14,50 +14,54 @@ export const initializeDB = () => {
         } else {
             resolve(db.defaults({weeks: [{
                 id: 0,
-                budget: 0,
-                dateCreated: moment().format("YYYY-MM-DD"),
-                days: { 
-                Monday: [{
-                    id: 0,
-                    itemName: "Grocery shopping",
-                    price: 100
-                }],
-                Tuesday: [{
-                    id: 0,
-                    itemName: "Gasoline",
-                    price: 20
-                  },
-                  {
-                      id: 1,
-                      itemName: "Lunch",
-                      price: 20
-                  }
-                ],
-                Wednesday: [{
-                    id: 0,
-                    itemName: "Textbooks",
-                    price: 200
-                }],
-                Thursday: [{
-                    id: 0,
-                    itemName: "Gift",
-                    price: 40
-                }],
-                Friday: [{
-                }],
-                Saturday: [{
-                    id: 0,
-                    itemName: "Bar",
-                    price: 100
-                }],
-                Sunday: [{
-                    id: 0,
-                    itemName: "Snack",
-                    price: 5
-                }]
-            }}]})
+                budget: 500,
+                dateCreated: moment().isoWeekday(1).format("YYYY-MM-DD"),
+                endDate: moment().isoWeekday(7).format("YYYY-MM-DD"),
+                days: {
+                    Monday: [],
+                    Tuesday: [],
+                    Wednesday: [],
+                    Thursday: [],
+                    Friday: [],
+                    Saturday: [],
+                    Sunday: []
+                }
+            }]})
               .write())
         }
+    })
+}
+
+//Adding a new week to work with once the week is over with (New week starts on Monday and ends on Sunday)
+export const addWeek = () => {
+    return new Promise((resolve, reject) => {
+        if (db.get("weeks").value().length >= 10) {
+            console.log("THIS SHOULD BE GETTING CALLED");
+            db.get('weeks')
+                .remove({
+                    dateCreated: db.get("weeks[0].dateCreated").value()
+                })
+                .write()
+        }
+
+        db.get("weeks")
+        .push({
+                id: db.get("weeks").value().length + 1,
+                budget: 500,
+                dateCreated: moment().isoWeekday(1).format("YYYY-MM-DD"),
+                endDate: moment().isoWeekday(7).format("YYYY-MM-DD"),
+                days: { 
+                    Monday: [],
+                    Tuesday: [],
+                    Wednesday: [],
+                    Thursday: [],
+                    Friday: [],
+                    Saturday: [],
+                    Sunday: []
+                }
+        })
+        .write()
+        resolve();
     })
 }
 
@@ -140,7 +144,7 @@ export const getBudgetFunction = (weekID = 0) => {
 
 export const getAllWeeksLength = () => {
     return (
-        db.get("weeks").value().length
+        db.get("weeks").value().length - 1
     )
 }
 
@@ -153,6 +157,20 @@ export const getCurrentWeekID = () => {
 export const getCreationDate = (week) => {
     return (
         db.get(`weeks[${week}].dateCreated`)
+            .value()
+    )
+}
+
+export const getEndingDate = (week) => {
+    return (
+        db.get(`weeks[${week}].endDate`)
+            .value()
+    )
+}
+
+export const getEndingDateLatestWeek = () => {
+    return (
+        db.get(`weeks[${db.get("weeks").value().length - 1}].endDate`)
             .value()
     )
 }

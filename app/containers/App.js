@@ -2,10 +2,13 @@
 import * as React from 'react';
 import { connect } from "react-redux";
 
-import { initializeDB } from "./../database/purchaseFunctions";
+import { initializeDB, getEndingDateLatestWeek, addWeek } from "./../database/purchaseFunctions";
 
 import { getBudget } from "./../actions/budget";
 import { setWeek } from "./../actions/week";
+import { newWeek } from "./../actions/types";
+
+import moment from "moment";
 
 type Props = {
   children: React.Node
@@ -19,13 +22,32 @@ class App extends React.Component<Props> {
       .then((value) => {
         if (value === null) {
           console.log("DB already made");
+          const compareDate = new Date(getEndingDateLatestWeek());
+          const todaysDate = new Date(moment().format("YYYY-MM-DD"));
+
+          if (todaysDate > compareDate) {
+            addWeek()
+              .then(() => {
+                this.props.setCurrentWeek();
+              })
+              .catch((error) => {
+                console.log(error);
+              })
+          } else {
+            this.props.setCurrentWeek();
+          }
+        } else {
+          this.props.setCurrentWeek();
         }
-        this.props.setCurrentWeek();
       })
       .then(() => {
         this.props.getBudget(this.props.currentWeek);
       })
+      .catch((error) => {
+        console.log(error);
+      })
   }
+
   render() {
     const { children } = this.props;
     return <React.Fragment>{children}</React.Fragment>;
@@ -42,6 +64,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setCurrentWeek: () => {
     dispatch(setWeek())
+  },
+  newWeek: () => {
+    dispatch({type: NEW_WEEK})
   }
 })
 

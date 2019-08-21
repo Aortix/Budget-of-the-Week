@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import styles from "./PreviousWeeksCard.css";
 
-import { getCreationDate, getBudgetFunction, getTotalPriceForTheWeek, getPurchasesOfDay } from "./../../database/purchaseFunctions";
+import { getCreationDate, getEndingDate, getBudgetFunction, getTotalPriceForTheWeek, getPurchasesOfDay } from "./../../database/purchaseFunctions";
 import sumUpPurchases from "./../../utils/sumUpPurchases";
 import daysOfTheWeek from "./../../utils/daysOfTheWeek";
 
@@ -24,6 +24,7 @@ class PreviousWeeksCard extends Component {
     componentDidMount = () => {
         this.setState({
             creationDate: getCreationDate(this.props.weekID),
+            endingDate: getEndingDate(this.props.weekID),
             budget: getBudgetFunction(this.props.weekID),
             weekTotalSpent: sumUpPurchases(getTotalPriceForTheWeek(this.props.weekID)),
         })
@@ -34,24 +35,6 @@ class PreviousWeeksCard extends Component {
             this.setState({
                 weekPercentage: Math.round((sumUpPurchases(getTotalPriceForTheWeek(this.props.weekID)) / this.state.budget) * 100)
             })
-        }
-
-        if (prevState.creationDate !== this.state.creationDate) {
-            const dayINeed = 0; // for Sunday
-            const today = moment().isoWeekday();
-
-            // if we haven't yet passed the day of the week that I need:
-            if (today <= dayINeed) { 
-            // then just give me this week's instance of that day
-            this.setState({
-                endingDate: moment().isoWeekday(dayINeed).format("YYYY-MM-DD")
-            })
-            } else {
-            // otherwise, give me *next week's* instance of that same day
-            this.setState({
-                endingDate: moment().add(1, 'weeks').isoWeekday(dayINeed).format("YYYY-MM-DD")
-            })
-            }
         }
     }
 
@@ -74,9 +57,9 @@ class PreviousWeeksCard extends Component {
                         <div>
                             {daysOfTheWeek.map((day, index) => {
                                 return (
-                                    <div key={index}>
+                                    <div key={index} className={styles.weekContainer}>
                                         <p>{day}</p>
-                                        <p>${sumUpPurchases(getPurchasesOfDay(day, this.props.weekID))}</p>
+                                        <p style={{marginTop: "10px"}}>${sumUpPurchases(getPurchasesOfDay(day, this.props.weekID))}</p>
                                     </div>
                                 )
                             })}

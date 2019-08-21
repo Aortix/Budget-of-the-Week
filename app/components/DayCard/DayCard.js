@@ -40,6 +40,13 @@ class DayCard extends Component {
       })
     }
 
+    if (prevProps.currentWeek !== this.props.currentWeek) {
+      this.setState({
+        totalOfAllProducts: sumUpPurchases(getPurchasesOfDay(this.props.day, this.props.currentWeek)),
+        dayInformation: updateDay(this.props.day),
+      })
+    }
+
     if (prevProps.addedPurchase !== this.props.addedPurchase &&
       this.props.addedPurchase === true) {
         this.setState({
@@ -74,7 +81,8 @@ class DayCard extends Component {
           }}>
                 <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
                 <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
-                {
+                { 
+                this.state.dayInformation.length === 0 ? <h3>No Activity</h3> :
                 this.state.dayInformation && this.state.dayInformation.slice(0).reverse().map((items) => {
                   return (
                     <div key={this.props.day + items.id} className={styles.flexContainer}>
@@ -93,6 +101,7 @@ class DayCard extends Component {
               <h2 className={styles.dayText}>{this.props.day || "Monday"}</h2>
               <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
               {
+              this.state.dayInformation.length === 0 ? <h3>No Activity</h3> :
               this.state.dayInformation && this.state.dayInformation.slice(0).reverse().map((items) => {
                 return (
                   <div key={this.props.day + items.id} className={styles.flexContainer}>
@@ -114,6 +123,7 @@ class DayCard extends Component {
                 <h3 className={styles.totalText}>{`$${this.state.totalOfAllProducts}`}</h3>
               </div>
               {
+              this.state.dayInformation.length === 0 ? <h3>No Activity</h3> :
               this.state.dayInformation && this.state.dayInformation.slice(0).reverse().map((items) => {
                 return (
                   <div key={this.props.day + items.id} className={styles.subSubFlexContainer}>
@@ -176,7 +186,7 @@ class DayCard extends Component {
 
 const mapStateToProps = (state) => ({
   addedPurchase: state.purchasesReducer.addedPurchase,
-  currentWeek: state.weekReducer.currentWeek
+  currentWeek: state.weekReducer.currentWeek,
 });
 
 const mapDispatchToProps = (dispatch) => ({
