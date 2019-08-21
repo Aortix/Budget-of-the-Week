@@ -8,7 +8,7 @@ import Layout from './Layout';
 import { setCurrentPage } from "./../actions/day";
 
 //Components
-import PreviousWeeksCard from "./../components/PreviousWeeksCard/PreviousWeeksCard";
+import PreviousWeekCards from "./../components/PreviousWeekCards/PreviousWeekCards";
 
 class PreviousWeeksPage extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class PreviousWeeksPage extends Component {
                     <Link to={routes.HOME}><i className="fas fa-arrow-left fa-2x" 
                         style={{margin: 12}}></i>
                     </Link>
-                    <PreviousWeeksCard />
+                    <PreviousWeekCards />
                 </div>
             </Layout>
         )

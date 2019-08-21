@@ -138,9 +138,22 @@ export const getBudgetFunction = (weekID = 0) => {
     }
 }
 
+export const getAllWeeksLength = () => {
+    return (
+        db.get("weeks").value().length
+    )
+}
+
 export const getCurrentWeekID = () => {
     return (
         db.get("weeks").value().length - 1
+    )
+}
+
+export const getCreationDate = (week) => {
+    return (
+        db.get(`weeks[${week}].dateCreated`)
+            .value()
     )
 }
 
