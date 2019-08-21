@@ -6,48 +6,6 @@
       "dateCreated": "2019-08-19",
       "endDate": "2019-08-25",
       "days": {
-        "Monday": [
-          {
-            "id": "Testing 1232019-08-21T14:13:43-07:00",
-            "itemName": "Testing 123",
-            "price": 100
-          }
-        ],
-        "Tuesday": [],
-        "Wednesday": [],
-        "Thursday": [],
-        "Friday": [],
-        "Saturday": [],
-        "Sunday": []
-      }
-    },
-    {
-      "id": 2,
-      "budget": 1000,
-      "dateCreated": "2019-08-26",
-      "endDate": "2019-09-01",
-      "days": {
-        "Monday": [
-          {
-            "id": "Tables2019-08-28T14:17:54-07:00",
-            "itemName": "Tables",
-            "price": 10
-          }
-        ],
-        "Tuesday": [],
-        "Wednesday": [],
-        "Thursday": [],
-        "Friday": [],
-        "Saturday": [],
-        "Sunday": []
-      }
-    },
-    {
-      "id": 3,
-      "budget": 500,
-      "dateCreated": "2019-09-02",
-      "endDate": "2019-09-08",
-      "days": {
         "Monday": [],
         "Tuesday": [],
         "Wednesday": [],

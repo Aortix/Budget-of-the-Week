@@ -31,9 +31,13 @@ export class Header extends Component{
       editingBudget: false,
       budgetValue: ""
     }
+
+    this.purchaseInterfaceListener = null;
   }
 
   componentDidMount = () => {
+    this.purchaseInterfaceListener = document.getElementById(this.props.currentPage);
+
     this.setState({
       budgetValue: getBudgetFunction(this.props.currentWeek).toString()
     })
@@ -48,26 +52,58 @@ export class Header extends Component{
     })
   }
 
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevProps.currentPage !== this.props.currentPage) {
+      this.purchaseInterfaceListener = document.getElementById(this.props.currentPage)
+    }
+  }
+
+  componentWillUnmount = () => {
+
+  }
+
+  eventListenerFunction = () => {
+    console.log("Clicked");
+    this.purchaseInterfaceListener.removeEventListener("click", this.eventListenerFunction, false)
+    this.setState({
+      newPurchaseInterfaceVisible: false
+    })
+
+    let divs = Array.from(document.querySelectorAll(`#${this.props.currentPage} :not(#AddPurchaseInterface)`));
+    divs.forEach((elements) => {
+      elements.style.setProperty("filter", "none");
+    })
+
+    divs = null;
+  }
+
   newPurchaseButtonClicked = () => {
     if (this.state.newPurchaseInterfaceVisible) {
         this.setState({
           newPurchaseInterfaceVisible: false
         })
+
+        this.purchaseInterfaceListener.removeEventListener("click", this.eventListenerFunction, false)
         
         let divs = Array.from(document.querySelectorAll(`#${this.props.currentPage} :not(#AddPurchaseInterface)`));
         divs.forEach((elements) => {
           elements.style.setProperty("filter", "none");
         })
+
+        divs = null;
     } else {
         this.setState({
           newPurchaseInterfaceVisible: true
         })
+
+        this.purchaseInterfaceListener.addEventListener("click", this.eventListenerFunction, false)
         
         let divs = Array.from(document.querySelectorAll(`#${this.props.currentPage} :not(#AddPurchaseInterface)`));
         setTimeout(() => {
-        divs.forEach((elements) => {
-          elements.style.setProperty("filter", "blur(1px)");
-        })
+          divs.forEach((elements) => {
+            elements.style.setProperty("filter", "blur(1px)");
+          })
+          divs = null;
       }, 100)
     }
   }
@@ -131,7 +167,12 @@ export class Header extends Component{
                   if (event.key === "Enter") {
                     this.budgetFormOnSubmit(this.state.budgetValue, this.props.currentWeek);
                   }
-                }} />
+                }}
+                onBlur={() => {
+                  this.setState({
+                    editingBudget: false
+                  })
+                }} autoFocus/>
               </label>
             </form> : 
             <span onClick={() => {

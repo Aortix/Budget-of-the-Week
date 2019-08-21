@@ -35,8 +35,7 @@ export const initializeDB = () => {
 //Adding a new week to work with once the week is over with (New week starts on Monday and ends on Sunday)
 export const addWeek = () => {
     return new Promise((resolve, reject) => {
-        if (db.get("weeks").value().length >= 10) {
-            console.log("THIS SHOULD BE GETTING CALLED");
+        if (db.get("weeks").value().length >= 12) {
             db.get('weeks')
                 .remove({
                     dateCreated: db.get("weeks[0].dateCreated").value()
