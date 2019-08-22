@@ -1,0 +1,32 @@
+.mainContainer {
+    display: inline-block;
+    margin: 10px;
+}
+
+.formContainer {
+    border: 1px solid black;
+    box-shadow: 0px 0px 1px var(--headerColor);
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.formContainer input {
+    border: none;
+    border-bottom: 1px solid black;
+    font-size: 18px;
+    outline-color: var(--headerColor);
+    outline-width: 3px;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.formContainer input::placeholder {
+    color: var(--headerColor);
+    opacity: 0.4;
+}
+
+.buttonContainer {
+    background-color: var(--headerColor);
+    color: white;
+    opacity: 0.4;
+}

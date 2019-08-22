@@ -13,8 +13,6 @@ class DayData extends Component {
         super(props);
         this.state = {
             percentage: 0,
-            newItemInput: "",
-            newPriceInput: ""
         }
     }
 
@@ -29,17 +27,15 @@ class DayData extends Component {
         if (prevProps.budget !== this.props.budget) {
             this.setState({
                 percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, this.props.currentWeek)) / 
-                this.props.budget) * 100),
-                newItemInput: "",
-                newPriceInput: ""
+                this.props.budget) * 100)
               })
         }
 
         if (prevProps.addedPurchase !== this.props.addedPurchase &&
           this.props.addedPurchase === true) {
             this.setState({
-              percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, this.props.currentWeek)) / 
-              this.props.budget) * 100)
+                percentage: Math.round((sumUpPurchases(getPurchasesOfDay(this.props.currentDay, this.props.currentWeek)) / 
+                this.props.budget) * 100)
             })
           }
       }
@@ -56,39 +52,12 @@ class DayData extends Component {
         }
     }
 
-    handleFormSubmit = (event) => {
-        event.preventDefault();
-        this.props.addingPurchase(this.state.newItemInput, this.state.newPriceInput, 
-            this.props.currentDay, this.props.currentWeek);
-        this.setState({
-            newItemInput: "",
-            newPriceInput: ""
-        })
-    }
-
     render() {
         return (
             <div className={styles.mainContainer}>
-                <p style={{fontSize: "20px", fontStyle: "italic"}}>This day is using up 
-                <span style={{color: this.determineColor(), fontSize: "22px"}}> {this.state.percentage}% </span> 
+                <p style={{fontSize: "28px", fontStyle: "italic"}}>This day is using up 
+                <span style={{color: this.determineColor(), fontSize: "30px"}}> {this.state.percentage}% </span> 
                 of your weekly budget.</p>
-                <form onSubmit={this.handleFormSubmit}>
-                    <label>Item: 
-                        <input value={this.state.newItemInput} onChange={(event) => {
-                            this.setState({
-                                newItemInput: event.target.value
-                            })
-                        }} required></input>
-                    </label>
-                    <label>Price:
-                        <input value={this.state.newPriceInput} onChange={(event) => {
-                            this.setState({
-                                newPriceInput: event.target.value
-                            })
-                        }} required></input>
-                    </label>
-                    <button type="submit">Submit</button>
-                </form>
             </div>
         )
     }

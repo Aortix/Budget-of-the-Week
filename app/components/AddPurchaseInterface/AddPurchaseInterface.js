@@ -42,6 +42,9 @@ class AddPurchaseInterface extends Component {
 
     changeDay = (event) => {
         this.props.setCurrentDayForPurchases(event.target.innerHTML);
+        this.setState({
+            changingDay: false
+        })
     }
 
     render() {
@@ -53,21 +56,24 @@ class AddPurchaseInterface extends Component {
                     width: "400px",
                     minHeight: "250px",
                     border: "1px solid black",
-                    boxShadow: "0px 0px 1px black",
+                    boxShadow: "0px 0px 1px var(--headerColor)",
                     textAlign: "center",
-                    backgroundColor: "#F0F0F0",
+                    backgroundColor: "var(--bodyColor)",
+                    padding: "10px",
                     zIndex: 2,
                     top: `${(this.props.newPurchaseInterfaceLocation.height / 2) - 125}px`,
                     left: `${(this.props.newPurchaseInterfaceLocation.width / 2) - 200}px`,
                 }}>
-                    <div className={styles.dayDropdown} onClick={() => {
-                        this.setState({
-                            changingDay: !this.state.changingDay
-                        })
-                    }}>
-                        <span>{this.props.currentDayForPurchases}</span>&nbsp;
-                        <i className="fas fa-sort-down"></i>
-                        {this.state.changingDay ? <ul>
+                    <div>
+                        <div className={styles.dayDropdown} onClick={() => {
+                            this.setState({
+                                changingDay: !this.state.changingDay
+                            })
+                        }}>
+                            <span>{this.props.currentDayForPurchases}</span>&nbsp;
+                            <i className="fas fa-sort-down"></i>
+                        </div>
+                        {this.state.changingDay ? <ul className={styles.ulDropdown}>
                             <li onClick={this.changeDay}>Monday</li>
                             <li onClick={this.changeDay}>Tuesday</li>
                             <li onClick={this.changeDay}>Wednesday</li>
@@ -94,11 +100,11 @@ class AddPurchaseInterface extends Component {
                                 })
                             }
                         }}>Additional Row</button>
-                    <button ref="addItemsButtonRef"
+                    <div ref="addItemsButtonRef"
                         className={styles.addItemButton}
                         onClick={() => {
                             this.props.addingPurchasesSwitch();
-                    }}>Add Items</button>
+                    }}>Add Items</div>
                 </div>
             )
             } else {

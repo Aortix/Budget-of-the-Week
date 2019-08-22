@@ -23,17 +23,18 @@
 }
 
 .budgetInput:focus {
-    outline-color: var(--mainTextColor);
-    outline-width: 3px;
+    outline-color: var(--bodyColor);
+    outline-width: 2px;
+    color: var(--bodyColor);
 }
 
 .purchaseButton {
     min-height: 30px;
     margin-left: 40px;
     font-size: 25px;
-    box-shadow: 0px 0px 1px var(--bodyColor);
-    background-color: #181818;
+    box-shadow: 0px 0px 2px var(--bodyColor);
+    background-color:  #000099;
     color: var(--bodyColor);
     cursor: pointer;
-    padding: 8px;
+    padding: 12px;
 }

@@ -39,7 +39,7 @@ export class WeeklyRemains extends Component {
     return (
       <div className={styles.mainContainer}>
         <p style={{ fontSize: 30 }}>Remaining Balance</p>
-        <p style={{ fontSize: 70, marginTop: '6px' }}>${this.state.remainingBalance}</p>
+        <p style={{ fontSize: 70, marginTop: '6px', color: "#000099" }}>${this.state.remainingBalance}</p>
       </div>
     );
   }

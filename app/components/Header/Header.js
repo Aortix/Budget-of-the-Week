@@ -140,7 +140,7 @@ export class Header extends Component{
     return (
       <div className={styles.mainContainer}>
         <div className={styles.flexContainer}>
-          <Link to={routes.PREVIOUSWEEKSSCREEN}><h2 style={{ cursor: 'pointer' }}>Previous Weeks</h2></Link>
+          <Link to={routes.PREVIOUSWEEKSSCREEN}><h2 style={{ cursor: 'pointer', color: "white" }}>Previous Weeks</h2></Link>
           <div className={styles.purchaseButton}
             onClick={this.newPurchaseButtonClicked}>
               <i
@@ -149,7 +149,7 @@ export class Header extends Component{
               />
               <span style={{ verticalAlign: 'middle' }}>New Purchase</span>
           </div>
-          <div>
+          <div style={{color: "white"}}>
             <span style={{ cursor: 'default' }}>Weekly Budget: $</span>
             {this.state.editingBudget ?
             <form style={{display: "inline", marginLeft: "5px", marginRight: "5px"}} 

@@ -9,6 +9,7 @@ import Layout from "./Layout";
 import DayCard from "./../components/DayCard/DayCard";
 import DayData from "./../components/DayData/DayData";
 import WeeklyRemains from "./../components/WeeklyRemains/WeeklyRemains";
+import AddPurchase from "./../components/AddPurchase/AddPurchase";
 import { setCurrentPage } from "./../actions/day";
 
 class DayPage extends Component {
@@ -32,11 +33,14 @@ class DayPage extends Component {
                     <div style={{marginBottom: "120px"}}>
                         <WeeklyRemains />
                     </div>
+                    <div style={{textAlign: "center"}}>
+                        <AddPurchase /> 
+                    </div>
                     <div style={{display: "flex", flexDirection: "row", flexWrap: "wrap", justifyContent: "center", width: "75%", margin: "0 auto"}}>
-                        <div style={{flex: 0.75}}>
+                        <div style={{flex: 0.7}}>
                             <DayCard day={this.props.currentDay} editable={true} scrolling={false} />
                         </div>
-                        <div style={{flex: 0.25}}>
+                        <div style={{flex: 0.3}}>
                             <DayData />
                         </div>
                     </div>

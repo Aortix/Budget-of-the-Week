@@ -6,9 +6,10 @@
     width: 100%;
     background-color: var(--footerColor);
     min-height: 35px;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--headerColor);
     align-items: center;
     opacity: 0.6;
+    z-index: 10;
 }
 
 .mainContainer:hover {

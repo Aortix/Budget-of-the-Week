@@ -61,10 +61,10 @@ a:hover {
 /*CSS RESET ENDS HERE*/
 
 :root {
-  --headerColor: #E8E8E8;
-  --footerColor: #F8F8F8;
-  --bodyColor: #F5F5F5;
-  --mainTextColor: #303030;
+  --headerColor: #000099;
+  --footerColor: white;
+  --bodyColor: #ffffff;
+  --mainTextColor: #00002d;
   --mainBorderColor: black;
   --mainFontSize: 19px;
 }
@@ -76,4 +76,8 @@ body {
   background-color: var(--bodyColor);
   font-family: Arial, Helvetica, Helvetica Neue, serif;
   font-size: var(--mainFontSize);
+}
+
+button {
+  background-color: transparent;
 }

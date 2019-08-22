@@ -31,7 +31,8 @@ export default class PreviousWeekCards extends Component {
         return (
             <div>
                 <h2 style={{fontSize: "46px", textAlign: "center", marginBottom: "40px"}}>Previous Weeks</h2>
-                {this.state.weeksArray.map((component, index) => {
+                {this.state.weeksArray.length === 0 ? <h2 style={{textAlign: "center", fontSize: "24px"}}>No data as of yet, but check back by the end of the week!</h2> : 
+                this.state.weeksArray.map((component, index) => {
                     return (
                         <Fragment key={index}>
                             {component}
