@@ -1,7 +1,9 @@
+import { remote } from "electron";
+
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
-const adapter = new FileSync('db.json')
+const adapter = new FileSync(`${remote.app.getPath('userData')}/db.json`)
 const db = low(adapter)
 
 import moment from 'moment'

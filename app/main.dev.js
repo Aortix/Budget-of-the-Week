@@ -10,10 +10,12 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, remote } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
+const path = require('path');
+const url = require('url');
 
 export default class AppUpdater {
   constructor() {
@@ -73,7 +75,12 @@ app.on('ready', async () => {
     height: 728
   });
 
-  mainWindow.loadURL(`file://${__dirname}/app.html`);
+  //mainWindow.loadURL(`file://${__dirname}/app.html`);
+  mainWindow.loadURL(url.format({
+    pathname: path.join(__dirname, 'app.html'),
+    protocol: 'file:',
+    slashes: true
+  }));
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
@@ -85,6 +92,7 @@ app.on('ready', async () => {
       mainWindow.minimize();
     } else {
       mainWindow.show();
+      //mainWindow.webContents.openDevTools();
       mainWindow.focus();
     }
   });
