@@ -30,7 +30,11 @@ class AddPurchase extends Component {
                 this.props.currentDay, this.props.currentWeek);
             this.setState({
                 newItemInput: "",
-                newPriceInput: ""
+                newPriceInput: "",
+                errors: {
+                    forItems: null,
+                    forPrices: null
+                }
             })
         } else {
             this.setState({
