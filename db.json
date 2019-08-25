@@ -2,161 +2,106 @@
   "weeks": [
     {
       "id": 0,
-      "budget": 1000,
+      "budget": 500,
       "dateCreated": "2019-08-19",
       "endDate": "2019-08-25",
       "days": {
         "Monday": [
           {
-            "id": "Chipotle2019-08-22T12:57:12-07:00",
-            "itemName": "Chipotle",
-            "price": 9
-          },
-          {
-            "id": "Gas2019-08-22T12:57:41-07:00",
-            "itemName": "Gas",
-            "price": 35
-          }
-        ],
-        "Tuesday": [
-          {
-            "id": "Burger King2019-08-22T12:57:54-07:00",
-            "itemName": "Burger King",
-            "price": 10
-          }
-        ],
-        "Wednesday": [
-          {
-            "id": "Chipotle2019-08-22T12:59:29-07:00",
-            "itemName": "Chipotle",
-            "price": 8
-          }
-        ],
-        "Thursday": [
-          {
-            "id": "Carls Jr2019-08-22T12:59:48-07:00",
-            "itemName": "Carls Jr",
-            "price": 8
-          }
-        ],
-        "Friday": [
-          {
-            "id": "Gas2019-08-22T12:58:48-07:00",
-            "itemName": "Gas",
+            "id": "Breakfast2019-08-24T17:15:26-07:00",
+            "itemName": "Breakfast",
             "price": 20
-          }
-        ],
-        "Saturday": [
-          {
-            "id": "Grocery Shopping2019-08-22T12:58:29-07:00",
-            "itemName": "Grocery Shopping",
-            "price": 100
-          }
-        ],
-        "Sunday": [
-          {
-            "id": "Resturant2019-08-22T12:59:16-07:00",
-            "itemName": "Resturant",
-            "price": 35
-          }
-        ]
-      }
-    },
-    {
-      "id": 2,
-      "budget": 1000,
-      "dateCreated": "2019-08-26",
-      "endDate": "2019-09-01",
-      "days": {
-        "Monday": [
-          {
-            "id": "Sweets2019-08-22T13:27:04-07:00",
-            "itemName": "Sweets",
-            "price": 7
           },
           {
-            "id": "Chipotle2019-08-22T13:27:08-07:00",
-            "itemName": "Chipotle",
-            "price": 9
-          },
-          {
-            "id": "Item 12019-08-22T14:09:57-07:00",
-            "itemName": "Item 1",
-            "price": 10
-          },
-          {
-            "id": "Item 22019-08-22T14:09:57-07:00",
-            "itemName": "Item 2",
+            "id": "Dinner2019-08-24T17:15:26-07:00",
+            "itemName": "Dinner",
             "price": 15
           },
           {
-            "id": "Item 32019-08-22T14:09:57-07:00",
-            "itemName": "Item 3",
+            "id": "Lunch2019-08-24T17:15:32-07:00",
+            "itemName": "Lunch",
+            "price": 10
+          },
+          {
+            "id": "Lunche2019-08-24T17:15:40-07:00",
+            "itemName": "Lunche",
             "price": 20
-          },
-          {
-            "id": "Item 42019-08-22T14:09:57-07:00",
-            "itemName": "Item 4",
-            "price": 25
-          },
-          {
-            "id": "Item 52019-08-22T14:09:57-07:00",
-            "itemName": "Item 5",
-            "price": 30
           }
         ],
         "Tuesday": [
           {
-            "id": "Gas2019-08-22T13:27:13-07:00",
-            "itemName": "Gas",
+            "id": "Breakfast2019-08-24T13:27:12-07:00",
+            "itemName": "Breakfast",
+            "price": 10
+          },
+          {
+            "id": "Dinner2019-08-24T13:27:12-07:00",
+            "itemName": "Dinner",
             "price": 25
           },
           {
-            "id": "Chipotle2019-08-22T13:27:32-07:00",
-            "itemName": "Chipotle",
-            "price": 9
+            "id": "Gas2019-08-24T13:28:50-07:00",
+            "itemName": "Gas",
+            "price": 20
+          },
+          {
+            "id": "Snack2019-08-24T13:28:50-07:00",
+            "itemName": "Snack",
+            "price": 3
           }
         ],
         "Wednesday": [
           {
-            "id": "Burger King2019-08-22T13:27:40-07:00",
-            "itemName": "Burger King",
-            "price": 10
-          }
-        ],
-        "Thursday": [
-          {
-            "id": "Subway2019-08-22T13:52:07-07:00",
-            "itemName": "Subway",
-            "price": 10
-          }
-        ],
-        "Friday": [
-          {
-            "id": "Gas2019-08-22T13:27:48-07:00",
-            "itemName": "Gas",
-            "price": 25
-          }
-        ],
-        "Saturday": [
-          {
-            "id": "Grocery Shopping2019-08-22T13:28:03-07:00",
-            "itemName": "Grocery Shopping",
-            "price": 90
-          }
-        ],
-        "Sunday": [
-          {
-            "id": "Resturant2019-08-22T13:28:19-07:00",
-            "itemName": "Resturant",
-            "price": 40
+            "id": "Breakfast2019-08-24T13:45:54-07:00",
+            "itemName": "Breakfast",
+            "price": 20
           },
           {
-            "id": "Burger King2019-08-22T13:28:23-07:00",
-            "itemName": "Burger King Menu",
+            "id": "Dinner2019-08-24T13:45:54-07:00",
+            "itemName": "Dinner",
             "price": 20
           }
-        ]
+        ],
+        "Thursday": [],
+        "Friday": [],
+        "Saturday": [
+          {
+            "id": "Breakfast2019-08-24T12:51:34-07:00",
+            "itemName": "Breakfast",
+            "price": 6
+          },
+          {
+            "id": "Lunch2019-08-24T12:51:34-07:00",
+            "itemName": "Lunch",
+            "price": 10
+          },
+          {
+            "id": "Breakfast2019-08-24T17:14:52-07:00",
+            "itemName": "Breakfast",
+            "price": 20
+          },
+          {
+            "id": "Dinner2019-08-24T17:14:52-07:00",
+            "itemName": "Dinner",
+            "price": 10
+          },
+          {
+            "id": "Lunch2019-08-24T17:14:57-07:00",
+            "itemName": "Lunch",
+            "price": 10
+          },
+          {
+            "id": "Breakfast2019-08-24T19:07:46-07:00",
+            "itemName": "Breakfast",
+            "price": 20
+          },
+          {
+            "id": "Candy2019-08-24T19:07:46-07:00",
+            "itemName": "Candy",
+            "price": 10
+          }
+        ],
+        "Sunday": []
       }
     }
   ]

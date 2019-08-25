@@ -19,6 +19,8 @@ import { GET_BUDGET } from '../../actions/types';
 //Actions
 import { setBudget } from "./../../actions/budget";
 
+import { validateStringsForItems, validateStringsForPrices, validateNumbers } from "./../../validation/validation";
+
 export class Header extends Component{
   constructor(props) {
     super(props);
@@ -63,7 +65,6 @@ export class Header extends Component{
   }
 
   eventListenerFunction = () => {
-    console.log("Clicked");
     this.purchaseInterfaceListener.removeEventListener("click", this.eventListenerFunction, false)
     this.setState({
       newPurchaseInterfaceVisible: false
@@ -120,19 +121,19 @@ export class Header extends Component{
   }
 
   budgetFormOnSubmit = (budgetValue, weekID) => {
-    if (typeof budgetValue === 'string') {
+    if (validateStringsForPrices(budgetValue) === true) {
       let convertedBudgetValue = parseInt(budgetValue);
-      if (typeof convertedBudgetValue === "number" && !isNaN(convertedBudgetValue)) {
+      if (validateNumbers(convertedBudgetValue) === true) {
         this.props.setBudget(convertedBudgetValue, weekID)
         this.setState({
           editingBudget: false,
           budgetValue: budgetValue
         })
       } else {
-        console.log("This is not a number!");
+        console.log(validateNumbers(convertedBudgetValue));
       }
     } else {
-      console.log("String format is incorrect in state!");
+      console.log(validateStringsForPrices(budgetValue));
     }
   }
 

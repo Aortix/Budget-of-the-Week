@@ -21,7 +21,6 @@ class App extends React.Component<Props> {
     initializeDB()
       .then((value) => {
         if (value === null) {
-          console.log("DB already made");
           const compareDate = new Date(getEndingDateLatestWeek());
           const todaysDate = new Date(moment().format("YYYY-MM-DD"));
 

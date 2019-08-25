@@ -55,8 +55,8 @@ class DayData extends Component {
     render() {
         return (
             <div className={styles.mainContainer}>
-                <p style={{fontSize: "28px", fontStyle: "italic"}}>This day is using up 
-                <span style={{color: this.determineColor(), fontSize: "30px"}}> {this.state.percentage}% </span> 
+                <p style={{fontSize: "26px", fontStyle: "italic"}}>This day is using up 
+                <span style={{color: this.determineColor(), fontSize: "28px"}}> {this.state.percentage}% </span> 
                 of your weekly budget.</p>
             </div>
         )

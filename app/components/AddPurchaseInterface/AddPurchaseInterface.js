@@ -8,12 +8,14 @@ import { ADDING_PURCHASES_SWITCH } from '../../actions/types';
 import { setCurrentDayForPurchases } from "./../../actions/day";
 
 import PurchaseRows from './../PurchaseRows/PurchaseRows';
+import { isContainer } from 'postcss-selector-parser';
 
 class AddPurchaseInterface extends Component {
     constructor(props) {
         super(props);
         this.state = {
             numberOfRowsArrayToMap: [],
+            rowsDisplayed: [],
             changingDay: false
         }
 
@@ -22,15 +24,21 @@ class AddPurchaseInterface extends Component {
 
     componentDidMount = () => {
         this.setState({ 
-            numberOfRowsArrayToMap: [<PurchaseRows toggleVisibility={this.props.toggleVisibility} />]
+            numberOfRowsArrayToMap: [<PurchaseRows id={0} changeRowsDisplayed={this.changeRowsDisplayed} toggleVisibility={this.props.toggleVisibility} />],
+            rowsDisplayed: [true]
         })
     }
 
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.visible !== this.props.visible) {
             this.setState({
-                numberOfRowsArrayToMap: [<PurchaseRows toggleVisibility={this.props.toggleVisibility}/>]
+                numberOfRowsArrayToMap: [<PurchaseRows id={0} changeRowsDisplayed={this.changeRowsDisplayed} toggleVisibility={this.props.toggleVisibility}/>],
+                rowsDisplayed: [true]
             })
+        }
+
+        if (!this.state.rowsDisplayed.includes(true) && this.state.rowsDisplayed.length !== 0) {
+            this.props.toggleVisibility();
         }
 
         if (prevState.numberOfRowsArrayToMap.length !== this.state.numberOfRowsArrayToMap.length && this.props.visible) {
@@ -44,6 +52,15 @@ class AddPurchaseInterface extends Component {
         this.props.setCurrentDayForPurchases(event.target.innerHTML);
         this.setState({
             changingDay: false
+        })
+    }
+
+    changeRowsDisplayed = (id) => {
+        let newRows = this.state.rowsDisplayed;
+        newRows[id] = false;
+
+        this.setState({
+            rowsDisplayed: newRows
         })
     }
 
@@ -96,7 +113,10 @@ class AddPurchaseInterface extends Component {
                             this.props.newPurchaseInterfaceLocation.height - 175) {
                                 this.setState({
                                     numberOfRowsArrayToMap: [...this.state.numberOfRowsArrayToMap, 
-                                    <PurchaseRows toggleVisibility={this.props.toggleVisibility} />]
+                                    <PurchaseRows id={this.state.numberOfRowsArrayToMap.length === 0 ? 1 : this.state.numberOfRowsArrayToMap.length} 
+                                    changeRowsDisplayed={this.changeRowsDisplayed}
+                                    toggleVisibility={this.props.toggleVisibility} />],
+                                    rowsDisplayed: [...this.state.rowsDisplayed, true]
                                 })
                             }
                         }}>Additional Row</button>

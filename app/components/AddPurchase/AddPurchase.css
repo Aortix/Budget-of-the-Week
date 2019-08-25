@@ -4,10 +4,13 @@
 }
 
 .formContainer {
+    display: flex;
+    align-items: center;
+    align-content: center;
     border: 1px solid black;
     box-shadow: 0px 0px 1px var(--headerColor);
     border-radius: 10px;
-    padding: 12px;
+    padding: 15px;
 }
 
 .formContainer input {
@@ -21,12 +24,23 @@
 }
 
 .formContainer input::placeholder {
-    color: var(--headerColor);
-    opacity: 0.4;
+    opacity: 0.7;
 }
 
 .buttonContainer {
     background-color: var(--headerColor);
     color: white;
     opacity: 0.4;
+}
+
+.errorItems {
+    font-size: 12px;
+    color: maroon;
+    position: relative;
+}
+
+.errorPrices {
+    font-size: 12px;
+    color: maroon;
+    position: relative;
 }

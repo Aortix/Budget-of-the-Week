@@ -7,27 +7,51 @@ import { ADDING_PURCHASES_SWITCH, ADDING_PURCHASES_SWITCH_DISABLE } from '../../
 
 import { addingPurchase } from "./../../actions/purchases";
 
+import { validateStringsForItems, validateStringsForPrices } from "./../../validation/validation";
+
 class PurchaseRows extends Component {
     constructor(props) {
         super(props);
         this.state = {
             itemInput: "",
-            priceInput: ""
+            priceInput: "",
+            visible: true,
+            errors: {
+                forItems: null,
+                forPrices: null
+            }
         }
     }
 
     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.addingPurchasesSwitch !== this.props.addingPurchasesSwitch
             && this.props.addingPurchasesSwitch === true) {
-                this.props.addedPurchase(this.state.itemInput, this.state.priceInput, 
-                    this.props.currentDayForPurchases, this.props.currentWeek);
-                this.props.togglingPurchasesSwitchDisable();
-                this.props.toggleVisibility();
+                if (validateStringsForItems(this.state.itemInput) === true &&
+                validateStringsForPrices(this.state.priceInput) === true) {
+                    this.props.addedPurchase(this.state.itemInput, this.state.priceInput, 
+                        this.props.currentDayForPurchases, this.props.currentWeek);
+                    this.props.togglingPurchasesSwitchDisable();
+                    this.props.changeRowsDisplayed(this.props.id);
+                    this.setState({
+                        itemInput: "",
+                        priceInput: "",
+                        visible: false
+                    })
+                } else {
+                    this.props.togglingPurchasesSwitchDisable();
+                    this.setState({
+                        errors: {
+                            forItems: validateStringsForItems(this.state.itemInput),
+                            forPrices: validateStringsForPrices(this.state.priceInput)
+                        }
+                    })
+                }
             }
     }
 
     render() {
         return (
+            this.state.visible === false ? null : 
             <div className={styles.flexContainer}>
                 <span style={{fontSize: "20px", flexBasis: "50%"}}>Item</span>
                 <span style={{fontSize: "20px", flexBasis: "50%"}}>Price</span>
@@ -39,6 +63,10 @@ class PurchaseRows extends Component {
                             this.setState({
                                 itemInput: event.target.value
                             })
+                        }} onKeyPress={(event) => {
+                            if (event.key === "Enter") {
+                                event.preventDefault();
+                            }
                         }}></input>
                     </label>
                 </form>
@@ -49,9 +77,15 @@ class PurchaseRows extends Component {
                             this.setState({
                                 priceInput: event.target.value
                             })
+                        }}  onKeyPress={(event) => {
+                            if (event.key === "Enter") {
+                                event.preventDefault();
+                            }
                         }}></input>
                     </label>
                 </form>
+                <span style={{fontSize: "12px", flexBasis: "50%", color: "maroon"}}>{this.state.errors.forItems !== null ? this.state.errors.forItems : null}</span>
+                <span style={{fontSize: "12px", flexBasis: "50%", color: "maroon"}}>{this.state.errors.forPrices !== null ? this.state.errors.forPrices: null}</span>
             </div>
         )
     }

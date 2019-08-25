@@ -6,6 +6,8 @@ import styles from './DayCard.css';
 import routes from "./../../constants/routes";
 import { Link, Redirect } from "react-router-dom";
 
+import { validateNumbers, validateStringsForItems, validateStringsForPrices } from "./../../validation/validation";
+
 import { updateDay, getPurchasesOfDay } from "./../../database/purchaseFunctions";
 import sumUpPurchases from "./../../utils/sumUpPurchases";
 import { setCurrentDay } from "./../../actions/day";
@@ -57,15 +59,27 @@ class DayCard extends Component {
   }
 
   addingItem = (itemInput, priceInput, day, week) => {
-    this.props.addPurchaseToDay(itemInput, priceInput, day, week);
+    if (validateStringsForItems(itemInput) === true && 
+    validateStringsForPrices(priceInput) === true) {
+      this.props.addPurchaseToDay(itemInput, priceInput, day, week);
+    } else {
+      console.log(validateStringsForItems(itemInput));
+      console.log(validateStringsForPrices(priceInput));
+    }
   }
 
   submittingUpdate = (itemID, itemText, itemPrice, day, week) => {
-    this.props.updatePurchaseToDay(itemID, itemText, itemPrice, day, week);
-    this.setState({
-      itemText: "",
-      selectedItem: null
-    })
+    if (validateStringsForItems(itemText) === true && 
+    validateStringsForPrices(itemPrice) === true) {
+      this.props.updatePurchaseToDay(itemID, itemText, itemPrice, day, week);
+      this.setState({
+        itemText: "",
+        selectedItem: null
+      })
+    } else {
+      console.log(validateStringsForItems(itemText));
+      console.log(validateStringsForPrices(itemPrice));
+    }
   }
 
   deletingItem = (itemID, day, week) => {
@@ -136,7 +150,7 @@ class DayCard extends Component {
                         }}>{items.itemName}</span> : 
                         <form onSubmit={(event) => {
                           event.preventDefault();
-                          this.submittingUpdate(items.id, this.state.itemText, items.price, 
+                          this.submittingUpdate(items.id, this.state.itemText, items.price.toString(), 
                             this.props.day, this.props.currentWeek)
                         }}>
                           <input className={styles.textInput} 
@@ -145,13 +159,18 @@ class DayCard extends Component {
                             this.setState({
                               itemText: event.target.value
                             })
-                          }}></input>
+                          }}
+                          onBlur={() => {
+                            this.setState({
+                              selectedItem: null
+                            })
+                          }} autoFocus></input>
                         </form>
                     }
                     {this.state.selectedItem !== this.props.day + items.id + "price" ?
                         <span className={styles.moneyText} onClick={() => {
                           this.setState({
-                            itemText: items.price,
+                            itemText: items.price.toString(),
                             selectedItem: this.props.day + items.id + "price"
                           })
                         }}>${items.price}</span> :
@@ -166,7 +185,11 @@ class DayCard extends Component {
                             this.setState({
                               itemText: event.target.value
                             })
-                          }}></input>
+                          }}
+                          onBlur={() => {
+                            this.setState({
+                              selectedItem: null
+                            })}} autoFocus></input>
                         </form>
                     }
                     <i style={{cursor: "pointer", margin: "3px"}} className="fas fa-times-circle"
