@@ -13,19 +13,24 @@
             "price": 20
           },
           {
-            "id": "Dinner2019-08-24T17:15:26-07:00",
-            "itemName": "Dinner",
-            "price": 15
-          },
-          {
             "id": "Lunch2019-08-24T17:15:32-07:00",
             "itemName": "Lunch",
             "price": 10
           },
           {
-            "id": "Lunche2019-08-24T17:15:40-07:00",
-            "itemName": "Lunche",
-            "price": 20
+            "id": "Test 12019-08-24T21:52:28-07:00",
+            "itemName": "Test 1",
+            "price": 10
+          },
+          {
+            "id": "Test 22019-08-24T21:52:33-07:00",
+            "itemName": "Test 2",
+            "price": 15
+          },
+          {
+            "id": "New item!2019-08-24T21:52:47-07:00",
+            "itemName": "New item!",
+            "price": 40
           }
         ],
         "Tuesday": [
