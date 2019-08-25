@@ -44,14 +44,16 @@ export class Header extends Component{
       budgetValue: getBudgetFunction(this.props.currentWeek).toString()
     })
     
-    ipcRenderer.on('Location', (event, arg) => {
+    ipcRenderer.on('Location', this.ipcRendererFunction);
+  }
+
+  ipcRendererFunction = (event, arg) => {
       this.setState({
         newPurchaseInterfaceLocation: {
           height: remote.getCurrentWindow().getBounds().height,
           width: remote.getCurrentWindow().getBounds().width
         }
       })
-    })
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -61,7 +63,7 @@ export class Header extends Component{
   }
 
   componentWillUnmount = () => {
-
+    ipcRenderer.removeListener('Location', this.ipcRendererFunction);
   }
 
   eventListenerFunction = () => {

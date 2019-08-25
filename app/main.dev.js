@@ -96,8 +96,8 @@ app.on('ready', async () => {
   const resizeListener = mainWindow.addListener("resize", resizeFunction, false);
 
   mainWindow.on('closed', () => {
-    mainWindow = null;
     resizeListener.removeListener("resize", resizeFunction, false);
+    mainWindow = null;
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
