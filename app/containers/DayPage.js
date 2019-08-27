@@ -11,6 +11,7 @@ import DayData from "./../components/DayData/DayData";
 import WeeklyRemains from "./../components/WeeklyRemains/WeeklyRemains";
 import AddPurchase from "./../components/AddPurchase/AddPurchase";
 import { setCurrentPage } from "./../actions/day";
+import { relative } from 'upath';
 
 class DayPage extends Component {
     constructor(props) {
@@ -27,9 +28,9 @@ class DayPage extends Component {
     render() {
         return (
             <Layout>
-                <div id="DayPage" style={{paddingBottom: "45px"}}>
+                <div id="DayPage" style={{paddingBottom: "45px", marginTop: "40px"}}>
                     <Link to={routes.HOME}><i className="fas fa-arrow-left fa-2x" 
-                    style={{margin: 12}}></i></Link>
+                    style={{margin: 12, position: "relative", top: -40}}></i></Link>
                     <div style={{marginBottom: "120px"}}>
                         <WeeklyRemains />
                     </div>

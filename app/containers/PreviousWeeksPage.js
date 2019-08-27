@@ -25,9 +25,9 @@ class PreviousWeeksPage extends Component {
     render() {
         return (
             <Layout>
-                <div id="PreviousWeeksPage">
+                <div id="PreviousWeeksPage" style={{marginTop: "45px"}}>
                     <Link to={routes.HOME}><i className="fas fa-arrow-left fa-2x" 
-                        style={{margin: 12}}></i>
+                        style={{margin: 12, position: "relative", top: "-45px"}}></i>
                     </Link>
                     <PreviousWeekCards />
                 </div>

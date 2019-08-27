@@ -186,10 +186,6 @@ export default class MenuBuilder {
         label: '&File',
         submenu: [
           {
-            label: '&Open',
-            accelerator: 'Ctrl+O'
-          },
-          {
             label: '&Close',
             accelerator: 'Ctrl+W',
             click: () => {
@@ -229,6 +225,13 @@ export default class MenuBuilder {
               ]
             : [
                 {
+                  label: '&Reload',
+                  accelerator: 'Ctrl+R',
+                  click: () => {
+                    this.mainWindow.webContents.reload();
+                  }
+                },
+                {
                   label: 'Toggle &Full Screen',
                   accelerator: 'F11',
                   click: () => {
@@ -238,37 +241,6 @@ export default class MenuBuilder {
                   }
                 }
               ]
-      },
-      {
-        label: 'Help',
-        submenu: [
-          {
-            label: 'Learn More',
-            click() {
-              shell.openExternal('http://electron.atom.io');
-            }
-          },
-          {
-            label: 'Documentation',
-            click() {
-              shell.openExternal(
-                'https://github.com/atom/electron/tree/master/docs#readme'
-              );
-            }
-          },
-          {
-            label: 'Community Discussions',
-            click() {
-              shell.openExternal('https://discuss.atom.io/c/electron');
-            }
-          },
-          {
-            label: 'Search Issues',
-            click() {
-              shell.openExternal('https://github.com/atom/electron/issues');
-            }
-          }
-        ]
       }
     ];
 

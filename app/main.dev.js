@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow, remote } from 'electron';
+import { app, BrowserWindow, remote, nativeImage } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
