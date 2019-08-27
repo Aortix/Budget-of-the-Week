@@ -28,7 +28,7 @@ class DayPage extends Component {
     render() {
         return (
             <Layout>
-                <div id="DayPage" style={{paddingBottom: "45px", marginTop: "40px"}}>
+                <div id="DayPage" style={{paddingBottom: "45px", paddingTop: "40px"}}>
                     <Link to={routes.HOME}><i className="fas fa-arrow-left fa-2x" 
                     style={{margin: 12, position: "relative", top: -40}}></i></Link>
                     <div style={{marginBottom: "120px"}}>

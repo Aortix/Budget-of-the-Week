@@ -24,8 +24,8 @@ class HomePage extends Component<Props> {
   render() {
     return (
       <Layout>
-        <div id="HomePage" style={{marginTop: "100px", marginBottom: "35px"}}>
-          <div style={{marginTop: "40px"}}>
+        <div id="HomePage" style={{paddingTop: "100px", marginBottom: "35px"}}>
+          <div>
             <WeeklyRemains />
           </div>
           <div
